@@ -1,0 +1,45 @@
+
+body {
+  background-color: #1fb8b8;
+}
+
+.searchLabel{
+  font-weight: bold;
+}
+
+
+h4{
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+}
+
+
+.placeLi {
+  list-style: none;
+  background-color: #e8ebe1;
+  color: #000;
+  font-weight: bold;
+}
+#mapBox{
+  height: 407px;
+}
+#listBox{
+  background-color: #d22110;
+}
+
+.non-floating{
+
+}
+
+.listRow{
+  text-align: left;
+  height: 37px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+}
+
+#list{
+  padding-left: 5px;
+}

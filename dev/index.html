@@ -27,8 +27,8 @@
     <div class="row" id='mainContent'>
       <div class="col-xs-12 col-md-4 non-floating" id='listBox'>
         <h4> Where to Eat in McDonough, GA</h4>
-        <a data-bind="attr: { href: ViewModel.yelpAttrib}">
-          <img data-bind= "attr: { src: ViewModel.yelpImgAttrib}"/>
+        <a data-bind="attr: { href: yelpAttrib}">
+          <img data-bind= "attr: { src: yelpImgAttrib}"/>
         </a>
 
       <ul id='list' data-bind = "foreach: workArray">
@@ -36,7 +36,7 @@
         </li>
       </ul>
     </div>
-    <div class="col-xs-12 col-md-8 non-floating" id="mapBox">
+    <div class="col-xs-12 col-md-8 non-floating" id="mapBox" data-bind = "mapBox">
       The map should go here, but I couldn't get it. Please reload to try again.
     </div>
   </div>
@@ -58,7 +58,7 @@
 <!-- added jquery, knockout and main scripts -->
 <script src="js/lib/jquery-1.11.3.min.js"></script>
 <script src="js/lib/knockout-3.2.0.js"></script>
-<script src="js/main.js"></script>
+<script src="js/mcdonough-eats.js"></script>
 
 
 </body>
