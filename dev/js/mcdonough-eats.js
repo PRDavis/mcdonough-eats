@@ -54,203 +54,219 @@ var McDonoughEats = function ()
       visible:'TRUE'
     }
   ];
-
-
+  //model variables
+  var map;
   var workArray = ko.observableArray();
+  var markerArray ;
   var yelpAttrib= ko.observable('http://www.yelp.com') ;
   var yelpImgAttrib= ko.observable('https://s3-media1.fl.yelpcdn.com/assets/srv0/developer_pages/dc8ff90d5d7d/assets/img/Powered_By_Yelp_Black.png');
   var userInput = ko.observable("");
   var lenInitialPlaces = initialPlaces.length;
+  var bound = new google.maps.LatLngBounds();
 
-
-  var initWorkArray = function()
+  var initMap = (function()
   {
-    for (j=0;j<lenInitialPlaces;j++)
+
+    map = new google.maps.Map(document.getElementById('mapBox'),
     {
-      workArray.push(initialPlaces[j]);
-      console.log('iterator: ', j);
-      console.log('value of initalPlaces member: ', initialPlaces[j]);
-      console.log("here's the initial working array ", workArray()[j].name);
-    }
-  };
-  initWorkArray();
+      center: {lat: 33.4469617, lng: -84.1419653},
+      scrollwheel: false,
+      zoom: 13,
+      mapTypeId: google.maps.MapTypeId.TERRAIN
+    });
+  }());
 
-  // custom binding for the google map
-  ko.bindingHandlers.mapBox =
+
+
+  var makeMarker = function()
   {
-    init: function(element, valueAccessor)
+
+    markerArray=[];
+    markerArray=workArray.slice();
+
+    for (var j = 0; j<markerArray.length;j++)
     {
-      map = new google.maps.Map(document.getElementById('mapBox'),
-      {
-        center: {lat: 33.4469617, lng: -84.1419653},
-        scrollwheel: false,
-        zoom: 13
-      });
-    }
-  };
-
-
-  var updateWorkArray = function()
-  {
-    workArray([]);
-
-      {
-        for (var k=0;k<lenInitialPlaces;k++)
+      markerArray[j].marker = new google.maps.Marker(
         {
-          if (initialPlaces[k].visible == 'TRUE')
-          {
-            workArray.push(initialPlaces[k]);
-
-          }
-        };
-      };
+          position: markerArray[j].latlng,
+          map: map
+        });
+        bound.extend(markerArray[j].marker.getPosition());
+      }
+      map.fitBounds(bound);
     };
 
 
-  var updateModel = function(k,data)
-  {
 
-    initialPlaces[k].rating_img_url=data.businesses[0].rating_img_url;
-    initialPlaces[k].review_count=data.businesses[0].review_count;
-    initialPlaces[k].url=data.businesses[0].url;
-    initialPlaces[k].latitude=data.businesses[0].location.coordinate.latitude;
-    initialPlaces[k].longitude=data.businesses[0].location.coordinate.longitude;
-    initialPlaces[k].latlng =
+
+    var updateWorkArray = function()
     {
-      lat: initialPlaces[k].latitude,
-      lng: initialPlaces[k].longitude
-    };
-    updateWorkArray();
-  };
-
-  ////////////////////////////////
-  var i=0;
-
-
-  var yelpInfo = function()
-  {
-    var auth =
-    {
-      //
-      // Yelp OAuth data
-      //
-      consumerKey: "sB9MQlZkUAFlQR5P8iRwCw",
-      consumerSecret: "HQb8up0L05VUZVjMEzAAxm_XIx4",
-      accessToken: "7dsLP8pY0a17kCRjPlFlSIplD4l1J77c",
-      accessTokenSecret: "sL9Hj1nFYN3HvRMKI4_ph8bvQdE",
-      serviceProvider:
+      workArray([]);
+      for (var k=0;k<lenInitialPlaces;k++)
       {
-        signatureMethod: "HMAC-SHA1"
+        if (initialPlaces[k].visible == 'TRUE')
+        {
+          workArray.push(initialPlaces[k]);
+        }
+      }
+      if (workArray()[lenInitialPlaces-1].latitude)
+      {
+        makeMarker();
       }
     };
 
 
 
-    var accessor =
+
+
+
+
+    var updateModel = function(k,data)
     {
-      consumerSecret: auth.consumerSecret,
-      tokenSecret: auth.accessTokenSecret
-    };
-
-
-    parameters = [];
-    parameters.push(['phone', initialPlaces[i].tel]);
-    parameters.push(['callback', 'cb']);
-    parameters.push(['oauth_consumer_key', auth.consumerKey]);
-    parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
-    parameters.push(['oauth_token', auth.accessToken]);
-    parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
-
-
-    var message =
-    {
-
-      'action': 'http://api.yelp.com/v2/phone_search?',
-      'method': 'GET',
-      'parameters': parameters
-    };
-
-    OAuth.setTimestampAndNonce(message);
-    OAuth.SignatureMethod.sign(message, accessor);
-
-    var parameterMap = OAuth.getParameterMap(message.parameters);
-    parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature);
-
-
-    $.ajax(
+      initialPlaces[k].rating_img_url=data.businesses[0].rating_img_url;
+      initialPlaces[k].review_count=data.businesses[0].review_count;
+      initialPlaces[k].url=data.businesses[0].url;
+      initialPlaces[k].latitude=data.businesses[0].location.coordinate.latitude;
+      initialPlaces[k].longitude=data.businesses[0].location.coordinate.longitude;
+      initialPlaces[k].latlng =
       {
-        url: message.action,
-        data: parameterMap,
-        cache: true,
-        dataType: 'jsonp',
-        success: function(data)
+        lat: initialPlaces[k].latitude,
+        lng: initialPlaces[k].longitude
+      };
+      updateWorkArray();
+    };
+
+    ////////////////////////////////
+    var i=0;
+
+
+    var yelpInfo = function()
+    {
+      var auth =
+      {
+        //
+        // Yelp OAuth data
+        //
+        consumerKey: "sB9MQlZkUAFlQR5P8iRwCw",
+        consumerSecret: "HQb8up0L05VUZVjMEzAAxm_XIx4",
+        accessToken: "7dsLP8pY0a17kCRjPlFlSIplD4l1J77c",
+        accessTokenSecret: "sL9Hj1nFYN3HvRMKI4_ph8bvQdE",
+        serviceProvider:
         {
-          if ( i < lenInitialPlaces)
+          signatureMethod: "HMAC-SHA1"
+        }
+      };
+
+
+
+      var accessor =
+      {
+        consumerSecret: auth.consumerSecret,
+        tokenSecret: auth.accessTokenSecret
+      };
+
+
+      parameters = [];
+      parameters.push(['phone', initialPlaces[i].tel]);
+      parameters.push(['callback', 'cb']);
+      parameters.push(['oauth_consumer_key', auth.consumerKey]);
+      parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+      parameters.push(['oauth_token', auth.accessToken]);
+      parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+
+
+      var message =
+      {
+
+        'action': 'http://api.yelp.com/v2/phone_search?',
+        'method': 'GET',
+        'parameters': parameters
+      };
+
+      OAuth.setTimestampAndNonce(message);
+      OAuth.SignatureMethod.sign(message, accessor);
+
+      var parameterMap = OAuth.getParameterMap(message.parameters);
+      parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature);
+
+
+      $.ajax(
+        {
+          url: message.action,
+          data: parameterMap,
+          cache: true,
+          dataType: 'jsonp',
+          success: function(data)
+          {
+            if ( i < lenInitialPlaces)
             {
               updateModel(i,data);
-              console.log('calling updateModel inside ajax success', i );
               i++;
               if (i<lenInitialPlaces)
-                {
-                  yelpInfo();
-                }
+              {
+                yelpInfo();
+              }
             }
           }
         });
 
-    };  //closes getYelp
-    yelpInfo();
+      };  //closes yelpInfo
+      yelpInfo();
 
-    var makeViz = function()
-    {
-      // if the searchbox is empty mark all items visible
-      if (userInput.toLowerCase === "")
+
+      var makeViz = function()
       {
-        for (var n = 0; n < lenInitialPlaces; n++)
+        // if the searchbox is empty mark all items visible
+        if (userInput.toLowerCase === "")
+        {
+          for (var n = 0; n < lenInitialPlaces; n++)
+          {
+
+            initialPlaces[n].visible='TRUE';
+          }
+        }
+        //if something is in the search box compare it to the names of the places
+        //if there is not a  match mark initialPlaces.visible as FALSE
+        //else mark "TRUE"
+        var rex = new RegExp($('#searchBox').val(), "i");
+
+        for (var p = 0; p <lenInitialPlaces; p++)
         {
 
-          initialPlaces[n].visible='TRUE';
+          if (!rex.test(initialPlaces[p].name))
+          {
+
+            initialPlaces[p].visible ='FALSE';
+
+          }
+          else
+          {
+            initialPlaces[p].visible ='TRUE';
+
+          }
         }
-      }
-      //if something is in the search box compare it to the names of the places
-      //if there is not a  match mark initialPlaces.visible as FALSE
-      //else mark "TRUE"
-      var rex = new RegExp($('#searchBox').val(), "i");
-
-      for (var p = 0; p <lenInitialPlaces; p++)
-      {
-
-        if (!rex.test(initialPlaces[p].name))
-        {
-
-          initialPlaces[p].visible ='FALSE';
-
-        }
-        else
-        {
-          initialPlaces[p].visible ='TRUE';
-
-        }
-      }
-      updateWorkArray();
-    };
+        updateWorkArray();
+      };
 
 
 
-  var init = function () {
-    /* add code to initialize this module */
-    ko.applyBindings(McDonoughEats);
-  };
+      var init = function () {
+        /* add code to initialize this module */
+        ko.applyBindings(McDonoughEats);
+      };
 
-  $(init);
+      $(init);
 
-  return{
-    userInput: userInput,
-    makeViz: makeViz,
-    yelpAttrib: yelpAttrib,
-    yelpImgAttrib: yelpImgAttrib,
-    workArray: workArray,
-    initWorkArray: initWorkArray
+      return{
 
-  };
-}();
+        userInput: userInput,
+        makeViz: makeViz,
+        yelpAttrib: yelpAttrib,
+        yelpImgAttrib: yelpImgAttrib,
+        workArray: workArray,
+        makeMarker: makeMarker,
+        initMap: initMap,
+        map: map,
+        updateWorkArray: updateWorkArray
+      };
+    }();
