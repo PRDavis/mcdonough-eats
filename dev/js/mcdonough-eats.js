@@ -18,11 +18,7 @@ var McDonoughEats = function ()
       tel: '6788832233',
       visible:'TRUE'
     },
-    {
-      name: 'Deep South Deli',
-      tel: '6783008999',
-      visible:'TRUE'
-    },
+
     {
       name: 'Pasta Max',
       tel: '7703209311',
@@ -46,6 +42,11 @@ var McDonoughEats = function ()
     {
       name: "Truett's Grill",
       tel: '6784322221',
+      visible:'TRUE'
+    },
+    {
+      name: 'Deep South Deli',
+      tel: '7703208999',
       visible:'TRUE'
     },
     {
@@ -80,7 +81,13 @@ var McDonoughEats = function ()
 
   var makeMarker = function()
   {
-
+    if (markerArray)
+    {
+      for (var i=0; i < markerArray.length; i++)
+      {
+        markerArray[i].marker.setMap(null);
+      }
+    }
     markerArray=[];
     markerArray=workArray.slice();
 
@@ -109,7 +116,14 @@ var McDonoughEats = function ()
           workArray.push(initialPlaces[k]);
         }
       }
-      if (workArray()[lenInitialPlaces-1].latitude)
+      if (workArray().length >= 1)
+      {
+        if (workArray()[workArray().length-1].latitude)
+        {
+          makeMarker();
+        }
+      }
+      if (workArray().length === 0)
       {
         makeMarker();
       }
