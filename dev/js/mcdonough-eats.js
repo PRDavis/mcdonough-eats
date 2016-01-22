@@ -46,7 +46,7 @@ var McDonoughEats = function ()
     },
     {
       name: 'Deep South Deli',
-      tel: '7703208999',
+      tel: '6783008999',
       visible:'TRUE'
     },
     {
@@ -235,6 +235,7 @@ var McDonoughEats = function ()
         {
           if ( i < lenInitialPlaces)
           {
+            console.log('here is i, and the data',i,data);
             updateModel(i,data);
             i++;
             if (i<lenInitialPlaces)

@@ -1,0 +1,22 @@
+{
+  "name": "mcdonough-eats",
+  "version": "1.0.0",
+  "description": "neighborhood map project",
+  "main": "dist/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PRDavis/mcdonough-eats.git"
+  },
+  "author": "Paul Davis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PRDavis/mcdonough-eats/issues"
+  },
+  "homepage": "https://github.com/PRDavis/mcdonough-eats#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
+}
