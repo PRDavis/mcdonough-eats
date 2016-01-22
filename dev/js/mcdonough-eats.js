@@ -235,7 +235,6 @@ var McDonoughEats = function ()
         {
           if ( i < lenInitialPlaces)
           {
-            console.log('here is i, and the data',i,data);
             updateModel(i,data);
             i++;
             if (i<lenInitialPlaces)
