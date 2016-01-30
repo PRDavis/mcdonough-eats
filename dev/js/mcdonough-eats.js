@@ -4,7 +4,7 @@ It also holds the model but maintains seperation of concerns using the MVVM desi
 
 var McDonoughEats = function ()
 {
-
+var self = this;
   /* initialPlaces is an array of local restaurant names and phone numbers. */
   var initialPlaces =
   [
@@ -64,7 +64,10 @@ var McDonoughEats = function ()
   var userInput = ko.observable("");
   var lenInitialPlaces = initialPlaces.length;
   var bound = new google.maps.LatLngBounds();
-
+  var selectedRestaurant = ko.observable("");
+  var infowindow = new google.maps.InfoWindow({
+          content: ''
+      });
   var initMap = (function()
   {
 
@@ -97,6 +100,7 @@ var McDonoughEats = function ()
         markerArray[j].marker = new google.maps.Marker(
           {
             position: markerArray[j].latlng,
+            title: markerArray[j].name,
             map: map
           });
         bound.extend(markerArray[j].marker.getPosition());
@@ -126,6 +130,10 @@ var McDonoughEats = function ()
 
 
   };
+
+
+
+
 
   var updateWorkArray = function()
   {
@@ -158,6 +166,7 @@ var McDonoughEats = function ()
 
   var updateModel = function(k,data)
   {
+    initialPlaces[k].image_url=data.businesses[0].image_url;
     initialPlaces[k].rating_img_url=data.businesses[0].rating_img_url;
     initialPlaces[k].review_count=data.businesses[0].review_count;
     initialPlaces[k].url=data.businesses[0].url;
@@ -168,6 +177,7 @@ var McDonoughEats = function ()
       lat: initialPlaces[k].latitude,
       lng: initialPlaces[k].longitude
     };
+    console.log(data);
     updateWorkArray();
   };
 
@@ -283,6 +293,54 @@ var McDonoughEats = function ()
       updateWorkArray();
     };
 
+var mrkerActivate = function(data, event)
+  {
+    selectedRestaurant  = null;
+    var contentString;
+        selectedRestaurant  = data.name;
+
+    for (var j=0; j < markerArray.length; j++)
+      {
+        markerArray[j].marker.setAnimation(null);
+        console.log("here's what is in the object: ",markerArray[j] );
+        if (markerArray[j].name == selectedRestaurant)
+          {
+
+            var selectedMarker = markerArray[j].marker;
+            selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
+            stopBounce(selectedMarker);
+            console.log('here is the url for the rating pic: ', markerArray[j].rating_img_url);
+            console.log('here is the url for the yelp logo: ', yelpImgAttrib());
+            contentString = '<div id="content">'+
+          '<h2 id="firstHeading" class="firstHeading">'+selectedRestaurant+'</h2>'+
+      '<div id="infoWinMainContent">'+
+      '<img src='+markerArray[j].image_url+'>'+
+      '<h3><b> Phone: '+'<a href=tel:'+ markerArray[j].tel+'>'+ markerArray[j].tel+'</a></b></h3>'+
+
+      '<img src='+markerArray[j].rating_img_url+'>'+
+      '<img src='+yelpImgAttrib()+'>'+
+
+      '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+      'Link</a> '+
+      '(last visited June 22, 2009).</p>'+
+      '</div>'+
+      '</div>';
+
+
+      infowindow.setContent(contentString);
+      infowindow.open(map, selectedMarker);
+
+          }
+      }
+      return;
+    };
+
+    function stopBounce(marker) {
+    setTimeout(function () {
+        marker.setAnimation(null);
+    }, 1400);
+}
+
 
 
     var init = function () {
@@ -293,7 +351,7 @@ var McDonoughEats = function ()
     $(init);
 
     return{
-
+      mrkerActivate: mrkerActivate,
       userInput: userInput,
       makeViz: makeViz,
       yelpAttrib: yelpAttrib,

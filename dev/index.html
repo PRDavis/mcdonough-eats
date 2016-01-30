@@ -29,7 +29,7 @@
             <img data-bind= "attr: { src: yelpImgAttrib}"/>
           </a>
           <ul id='list' data-bind = "foreach: workArray">
-          <li class="placeLi listRow" data-bind = "text : name">
+          <li class='placeLi listRow' data-bind = "text : name, click : $root.mrkerActivate">
           </li>
           </ul>
         </div>
