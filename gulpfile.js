@@ -85,6 +85,7 @@ gulp.task('html', function() {
 // add the README.md to the output
 gulp.task('readme', function() {
   return gulp.src(readme.in)
+  .pipe(gulp.dest('.'))
   .pipe(gulp.dest(readme.out));
 });
 

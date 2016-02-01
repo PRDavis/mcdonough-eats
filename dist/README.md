@@ -29,7 +29,10 @@ Clicking on either the restaurant name in the list or on the map marker will
 animate the marker and open an infoWindow on the map.
 The infoWindow is populated with styled data, images and a review snippet
 from the updated data model. Also the location address and phone number are
-displayed. Clicking the phone number will initiate a phone call on enabled
+displayed.
+Note in small and extra-small viewports, some elements are hidden for
+better responsive design and user experience.
+Clicking the phone number will initiate a phone call on enabled
 devices.
 
 A rating image is displayed in the infoWindow and there is a link to the
@@ -87,6 +90,10 @@ The files are arranged in 3 main categories:
 
  to remove the contents of the /dev folder fist, and then run the default task.
 
+ Note: This gulpfile has a watch function. Updates to some /dist files are made
+ upon saving the file. When you run gulp it will continue to run until you stop
+ it manually. Wait until you see Finished 'default' in the build output, and
+ then stop gulp by using Ctrl-C key combination. 
  -------------------
 
  Please load the mcdonough-eats.html file in the /docs folder into your browsers
