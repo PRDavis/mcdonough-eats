@@ -7,6 +7,10 @@ body {
   font-weight: bold;
 }
 
+#introText{
+  color: #d22110;
+  font-weight: bold;
+}
 
 h4{
   text-align: center;
@@ -24,6 +28,57 @@ h4{
 #mapBox{
   height: 407px;
 }
+
+
+#infoWindowContainer .infoWindowHeader {
+   font-size: 22px;
+   font-weight: 400;
+   padding: 10px;
+   background-color: #1fb8b8;
+   color: black;
+   margin: 1px;
+   border-radius: 2px 2px 0 0;
+}
+#infoWindowContainer {
+   font-size: 16px;
+   font-weight: 400;
+   padding: 0;
+   background-color: #e8ebe1;
+   color: black;
+   margin: 0;
+   border-radius: 2px 2px 0 0;
+}
+
+
+
+#imageRow {
+  height: 100px;
+  margin: 1px;
+}
+
+#restPic {
+  width: 100px;
+  padding-left: 0;
+  padding-right: 2px;
+}
+
+#snippetPic {
+  width: 100px;
+  padding-left: 0;
+  padding-right: 2px;
+}
+
+
+
+
+
+
+.gm-style-iw {
+  width: 350px;
+  border-radius: 2px 2px 0 0;
+}
+
+
 #listBox{
   background-color: #d22110;
 }
@@ -38,6 +93,7 @@ h4{
   border-style: solid;
   border-color: black;
   border-width: 2px;
+  padding-left: 2px;
 }
 
 #list{
