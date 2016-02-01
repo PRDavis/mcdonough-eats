@@ -64,7 +64,8 @@ var McDonoughEats = function ()
   var bound = new google.maps.LatLngBounds();
   var selectedRestaurant = ko.observable("");
   var infowindow = new google.maps.InfoWindow({
-    content: ''
+    content: '',
+    maxWidth: 450
   });
   //initiate the google map
   var initMap = (function()
@@ -359,6 +360,7 @@ var McDonoughEats = function ()
               '</p></a>'+
               '</div>'+
               '</div>';
+              //var infoWindowOptions = { max-width: 75%};
 
               infowindow.setContent(contentString);
               infowindow.open(map, selectedMarker);
