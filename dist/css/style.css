@@ -93,3 +93,7 @@ h4{
 .gm-style-iw {
 overflow: scroll;
 }
+
+.gm-style {
+  overflow: hidden; 
+}
