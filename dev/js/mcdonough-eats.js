@@ -37,11 +37,6 @@ var McDonoughEats = function ()
       visible:'TRUE'
     },
     {
-      name: 'Seasons Bistro',
-      tel: '6788144995',
-      visible:'TRUE'
-    },
-    {
       name: "Truett's Grill",
       tel: '6784322221',
       visible:'TRUE'
