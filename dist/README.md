@@ -92,9 +92,9 @@ The files are arranged in 3 main categories:
 
  Note: This gulpfile has a watch function. Updates to some /dist files are made
  upon saving the file. When you run gulp it will continue to run until you stop
- it manually. Wait until you see Finished 'default' in the build output, and
- then stop gulp by using Ctrl-C key combination. 
- -------------------
+ it manually. Wait until you see Finished 'default' in the build output,
+ and then stop gulp by using Ctrl-C key combination.
+
 
  Please load the mcdonough-eats.html file in the /docs folder into your browsers
  to see the javascript code documentation.  
