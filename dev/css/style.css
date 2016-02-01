@@ -29,7 +29,7 @@ h4{
   height: 407px;
 }
 
-#infoWindowContainer .infoWindowHeader {
+.infoWindowHeader {
    font-size: 22px;
    font-weight: 400;
    padding: 10px;
@@ -47,6 +47,7 @@ h4{
    color: black;
    margin: 0;
    border-radius: 2px 2px 0 0;
+   overflow: scroll;
 }
 
 #imageRow {
