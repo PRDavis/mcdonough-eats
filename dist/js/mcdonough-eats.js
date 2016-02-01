@@ -65,7 +65,7 @@ var McDonoughEats = function ()
   var selectedRestaurant = ko.observable("");
   var infowindow = new google.maps.InfoWindow({
     content: '',
-    maxWidth: 450
+    maxWidth: none
   });
   //initiate the google map
   var initMap = (function()
