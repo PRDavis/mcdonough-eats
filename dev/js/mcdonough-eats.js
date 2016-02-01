@@ -250,7 +250,8 @@ var McDonoughEats = function ()
       var parameterMap = OAuth.getParameterMap(message.parameters);
       parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature);
 
-      // once authenticated makes the ajax request for the entries in the data model
+      // Once authenticated makes the ajax request for the entries in the data model.
+      // An ajax failure returns an alert advising the user to retry.
       $.ajax(
         {
           url: message.action,
@@ -268,7 +269,10 @@ var McDonoughEats = function ()
                       yelpInfo();
                     }
                 }
-            }
+            },
+          error: function (response) {
+        alert('Sorry, something went wrong. Please try again.');
+    }
         });
 
     };  //closes yelpInfo

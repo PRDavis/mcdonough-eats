@@ -459,7 +459,8 @@ array elements</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>once authenticated makes the ajax request for the entries in the data model</p>
+              <p>Once authenticated makes the ajax request for the entries in the data model.
+An ajax failure returns an alert advising the user to retry.</p>
 
             </div>
             
@@ -480,7 +481,10 @@ array elements</p>
                       yelpInfo();
                     }
                 }
-            }
+            },
+          error: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) </span>{
+        alert(<span class="hljs-string">'Sorry, something went wrong. Please try again.'</span>);
+    }
         });
 
     };  <span class="hljs-comment">//closes yelpInfo</span>
