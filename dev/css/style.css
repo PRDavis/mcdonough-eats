@@ -18,17 +18,16 @@ h4{
   color: #000;
 }
 
-
 .placeLi {
   list-style: none;
   background-color: #e8ebe1;
   color: #000;
   font-weight: bold;
 }
+
 #mapBox{
   height: 407px;
 }
-
 
 #infoWindowContainer .infoWindowHeader {
    font-size: 22px;
@@ -39,6 +38,7 @@ h4{
    margin: 1px;
    border-radius: 2px 2px 0 0;
 }
+
 #infoWindowContainer {
    font-size: 16px;
    font-weight: 400;
@@ -48,8 +48,6 @@ h4{
    margin: 0;
    border-radius: 2px 2px 0 0;
 }
-
-
 
 #imageRow {
   height: 100px;
@@ -68,15 +66,6 @@ h4{
   padding-right: 2px;
 }
 
-
-
-
-
-
-.gm-style-iw {
-  width: 350px;
-  border-radius: 2px 2px 0 0;
-}
 
 
 #listBox{

@@ -18,21 +18,26 @@
     <div class="container">
       <div class="searchBar row">
         <div class="col-xs-12" id="searchCol">
+          <!-- Search box to all user to filter the list items -->
           <span class='searchLabel'>Search</span>
+          <!-- event listener for keyup event in searchbox - calls userInput method to match input to list items -->
           <input type="search" placeholder= 'Start typing to filter' id="searchBox" data-bind="textInput: userInput, event: {keyup: makeViz}">
         </div>
       </div>
       <div class="row" id='mainContent'>
         <div class="col-xs-12 col-md-4 non-floating" id='listBox'>
           <h4> Where to Eat in McDonough, GA</h4>
+          <!-- put yelp logo link in list per api rules -->
           <a data-bind="attr: { href: yelpAttrib}">
             <img data-bind= "attr: { src: yelpImgAttrib}"/>
           </a>
+          <!-- iterate through workArray and populate list with contents of name property, also listen for click and call mrkerActivate when detected -->
           <ul id='list' data-bind = "foreach: workArray">
           <li class='placeLi listRow' data-bind = "text : name, click : $root.mrkerActivate">
           </li>
           </ul>
         </div>
+      <!-- make the box for the map and put a failure message in case of a retreival failure -->  
       <div class="col-xs-12 col-md-8 non-floating" id="mapBox">
         The map should go here, but I couldn't get it. Please reload to try again.
       </div>
