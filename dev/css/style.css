@@ -89,3 +89,7 @@ h4{
 #list{
   padding-left: 5px;
 }
+
+.gm-style-iw {
+overflow: scroll;
+}
