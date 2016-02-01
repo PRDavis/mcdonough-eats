@@ -69,11 +69,6 @@ It also holds the model but maintains seperation of concerns using the MVVM desi
       visible:<span class="hljs-string">'TRUE'</span>
     },
     {
-      name: <span class="hljs-string">'Seasons Bistro'</span>,
-      tel: <span class="hljs-string">'6788144995'</span>,
-      visible:<span class="hljs-string">'TRUE'</span>
-    },
-    {
       name: <span class="hljs-string">"Truett's Grill"</span>,
       tel: <span class="hljs-string">'6784322221'</span>,
       visible:<span class="hljs-string">'TRUE'</span>
@@ -605,29 +600,30 @@ Finally, it places that content in the infoWindow and places it on the map.</p>
               <span class="hljs-keyword">var</span> currentAddress = markerArray[j].address+<span class="hljs-string">', '</span>+markerArray[j].city+<span class="hljs-string">', '</span>+markerArray[j].state_code+<span class="hljs-string">' '</span>+markerArray[j].postal_code;
               <span class="hljs-keyword">var</span> currentPhone = <span class="hljs-string">'('</span>+markerArray[j].tel.slice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>)+<span class="hljs-string">') '</span>+markerArray[j].tel.slice(<span class="hljs-number">3</span>,<span class="hljs-number">6</span>)+<span class="hljs-string">'-'</span>+markerArray[j].tel.slice(<span class="hljs-number">6</span>,<span class="hljs-number">10</span>);
               <span class="hljs-keyword">var</span> currentSnippetText = markerArray[j].snippet_text;
-              contentString = <span class="hljs-string">'&lt;div id="infoWindowContainer"&gt;'</span>+
-              <span class="hljs-string">'&lt;h2 class="infoWindowHeader"&gt;'</span>+selectedRestaurant+<span class="hljs-string">'&lt;/h2&gt;'</span>+
-              <span class="hljs-string">'&lt;div class ="row" id="imageRow"&gt;'</span>+
-              <span class="hljs-string">'&lt;div class = "col-md-2" id = "restPic"&gt;'</span>+
-              <span class="hljs-string">'&lt;img src='</span>+markerArray[j].image_url+<span class="hljs-string">'&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>+
-              <span class="hljs-string">'&lt;div class = "col-md-2" id = "snippetPic"&gt;'</span>+
-              <span class="hljs-string">'&lt;img class= "snippetPic" src='</span>+markerArray[j].snippet_image_url+<span class="hljs-string">'&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>+
-              <span class="hljs-string">'&lt;div class =  "col-md-8"&gt;'</span>+
-              <span class="hljs-string">'&lt;p id="introText"&gt; Click the telephone number to call this restaurant, or click the link below for more information:&lt;/p&gt;'</span>+
-              <span class="hljs-string">'&lt;p class = "snippetText"&gt;'</span>+currentSnippetText+<span class="hljs-string">'&lt;/p&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>+
+              contentString =
+              <span class="hljs-string">'&lt;div id="infoWindowContainer"&gt;'</span>+
+                <span class="hljs-string">'&lt;h2 class="infoWindowHeader"&gt;'</span>+selectedRestaurant+<span class="hljs-string">'&lt;/h2&gt;'</span>+
+                <span class="hljs-string">'&lt;div class ="row" id="imageRow"&gt;'</span>+
+                  <span class="hljs-string">'&lt;div class = "col-md-2 col-sm-2 col-xs-2" id = "restPic"&gt;'</span>+
+                    <span class="hljs-string">'&lt;img src='</span>+markerArray[j].image_url+<span class="hljs-string">'&gt;'</span>+
+                  <span class="hljs-string">'&lt;/div&gt;'</span>+
+                  <span class="hljs-string">'&lt;div class = "col-md-2 col-sm-2 col-xs-2" id = "snippetPic"&gt;'</span>+
+                    <span class="hljs-string">'&lt;img class= "snippetPic" src='</span>+markerArray[j].snippet_image_url+<span class="hljs-string">'&gt;'</span>+
+                  <span class="hljs-string">'&lt;/div&gt;'</span>+
+                  <span class="hljs-string">'&lt;div class =  "col-md-8 col-sm-8 hidden-sm hidden-xs"&gt;'</span>+
+                    <span class="hljs-string">'&lt;p id="introText"&gt; Click the telephone number to call this restaurant, or click the link below for more information:&lt;/p&gt;'</span>+
+                    <span class="hljs-string">'&lt;p class = "snippetText"&gt;'</span>+currentSnippetText+<span class="hljs-string">'&lt;/p&gt;'</span>+
+                  <span class="hljs-string">'&lt;/div&gt;'</span>+
+                <span class="hljs-string">'&lt;/div&gt;'</span>+
               <span class="hljs-string">'&lt;div class = "row" id ="addressRow"&gt;'</span>+
-              <span class="hljs-string">'&lt;div class="col-md-12"&gt;'</span>+
-              <span class="hljs-string">'&lt;p id="addressP"&gt;&lt;b&gt; Address: '</span>+ currentAddress + <span class="hljs-string">'&lt;/b&gt;&lt;/p&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>+
+                <span class="hljs-string">'&lt;div class="col-md-12 col-sm-12 hidden-sm hidden-xs"&gt;'</span>+
+                  <span class="hljs-string">'&lt;p id="addressP"&gt;&lt;b&gt; Address: '</span>+ currentAddress + <span class="hljs-string">'&lt;/b&gt;&lt;/p&gt;'</span>+
+                <span class="hljs-string">'&lt;/div&gt;'</span>+
               <span class="hljs-string">'&lt;/div&gt;'</span>+
               <span class="hljs-string">'&lt;div class = "row" id = "phoneRow"&gt;'</span>+
-              <span class="hljs-string">'&lt;div class="col-md-12"&gt;'</span>+
-              <span class="hljs-string">'&lt;p id="phoneP"&gt;&lt;b&gt; Phone: '</span>+<span class="hljs-string">'&lt;a href=tel:'</span>+ markerArray[j].tel+<span class="hljs-string">'&gt;'</span>+ currentPhone+<span class="hljs-string">'&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>+
+                <span class="hljs-string">'&lt;div class="col-md-12 col-sm-12 col-xs-12"&gt;'</span>+
+                  <span class="hljs-string">'&lt;p id="phoneP"&gt;&lt;b&gt; Phone: '</span>+<span class="hljs-string">'&lt;a href=tel:'</span>+ markerArray[j].tel+<span class="hljs-string">'&gt;'</span>+ currentPhone+<span class="hljs-string">'&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;'</span>+
+                <span class="hljs-string">'&lt;/div&gt;'</span>+
               <span class="hljs-string">'&lt;/div&gt;'</span>+
               <span class="hljs-string">'&lt;img src='</span>+markerArray[j].rating_img_url+<span class="hljs-string">'&gt;'</span>+
               markerArray[j].review_count+<span class="hljs-string">' reviews  '</span>+
@@ -636,8 +632,22 @@ Finally, it places that content in the infoWindow and places it on the map.</p>
               <span class="hljs-string">'&lt;p&gt; &lt;a href='</span>+markerArray[j].url+<span class="hljs-string">' target="_blank"&gt;Click here to visit this page on Yelp.com'</span>+
               <span class="hljs-string">'&lt;/p&gt;&lt;/a&gt;'</span>+
               <span class="hljs-string">'&lt;/div&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>;
+              <span class="hljs-string">'&lt;/div&gt;'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>var infoWindowOptions = { max-width: 75%};</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
               infowindow.setContent(contentString);
               infowindow.open(map, selectedMarker);
             }
@@ -648,11 +658,11 @@ Finally, it places that content in the infoWindow and places it on the map.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>stops the map marker bounce after approx 2 bounces</p>
 
@@ -669,11 +679,11 @@ Finally, it places that content in the infoWindow and places it on the map.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>required by knockoutjs to initiate the viewmodel</p>
 
@@ -687,11 +697,11 @@ Finally, it places that content in the infoWindow and places it on the map.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>jQuery starts this file on document ready</p>
 
@@ -702,11 +712,11 @@ Finally, it places that content in the infoWindow and places it on the map.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>function returns</p>
 
