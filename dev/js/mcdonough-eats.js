@@ -344,13 +344,13 @@ var McDonoughEats = function ()
                   '<div class = "col-md-2 col-sm-2 col-xs-2" id = "snippetPic">'+
                     '<img class= "snippetPic" src='+markerArray[j].snippet_image_url+'>'+
                   '</div>'+
-                  '<div class =  "col-md-8 col-sm-8 hidden-tablet hidden-phone">'+
+                  '<div class =  "col-lg-8 hidden-md hidden-sm hidden-xs">'+
                     '<p id="introText"> Click the telephone number to call this restaurant, or click the link below for more information:</p>'+
                     '<p class = "snippetText">'+currentSnippetText+'</p>'+
                   '</div>'+
                 '</div>'+
               '<div class = "row" id ="addressRow">'+
-                '<div class="col-md-12 col-sm-12 hidden-tablet hidden-phone">'+
+                '<div class="col-lg-12 hidden-md hidden-sm hidden-xs">'+
                   '<p id="addressP"><b> Address: '+ currentAddress + '</b></p>'+
                 '</div>'+
               '</div>'+
