@@ -252,29 +252,33 @@ var McDonoughEats = function ()
 
       // Once authenticated makes the ajax request for the entries in the data model.
       // An ajax failure returns an alert advising the user to retry.
-      $.ajax(
+
+      var yelpRequest = $.ajax(
         {
           url: message.action,
           data: parameterMap,
           cache: true,
           dataType: 'jsonp',
-          success: function(data)
-            {
-              if ( i < lenInitialPlaces)
-                {
-                  updateModel(i,data);
-                  i++;
-                  if (i<lenInitialPlaces)
-                    {
-                      yelpInfo();
-                    }
-                }
-            },
-          error: function (response) {
-        alert('Sorry, something went wrong. Please try again.');
-    }
+          timeout: 5000
         });
 
+      yelpRequest.error(function(xhr, statusText)
+        {
+          alert("Sorry, something went wrong when trying to reach Yelp.com, please try again.");
+        });
+
+      yelpRequest.success(function(data)
+        {
+          if ( i < lenInitialPlaces)
+            {
+              updateModel(i,data);
+              i++;
+              if (i<lenInitialPlaces)
+                {
+                  yelpInfo();
+                }
+            }
+        });
     };  //closes yelpInfo
 
   yelpInfo();
