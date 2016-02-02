@@ -1,0 +1,44 @@
+
+Styling your infowindow
+http://gis.yohman.com/up206b/tutorials/5-3-styling-your-infowindow/
+
+How To Write A Great README
+https://robots.thoughtbot.com/how-to-write-a-great-readme
+
+5 ways to customize Google Maps InfoWindow
+http://en.marnoto.com/2014/09/5-formas-de-personalizar-infowindow.html
+
+Simplest inline method to left pad a string
+http://stackoverflow.com/questions/13859538/simplest-inline-method-to-left-pad-a-string
+
+Working with Phone Numbers in JavaScript
+http://www.sitepoint.com/working-phone-numbers-javascript/
+
+Bootstrap
+http://getbootstrap.com/
+
+
+Simple click event
+https://developers.google.com/maps/documentation/javascript/examples/event-simple
+
+YelpAPI
+https://www.yelp.com/developers/documentation/v2/overview
+
+KnockoutJS - Observables
+http://www.tutorialspoint.com/knockoutjs/knockoutjs_observables.htm
+
+Bounce a pin in google maps once
+http://stackoverflow.com/questions/7339200/bounce-a-pin-in-google-maps-once
+
+
+Marker Animations
+https://developers.google.com/maps/documentation/javascript/examples/marker-animations
+
+The Top 10 Mistakes That KnockoutJS Developers Make
+https://www.airpair.com/knockout/posts/top-10-mistakes-knockoutjs
+
+Observables
+http://knockoutjs.com/documentation/observables.html
+
+The "click" binding
+http://knockoutjs.com/documentation/click-binding.html
