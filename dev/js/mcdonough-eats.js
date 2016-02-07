@@ -124,7 +124,7 @@ var McDonoughEats = function ()
         });
       setTimeout(function()
         {
-          google.maps.event.removeListener(zoomListener)
+          google.maps.event.removeListener(zoomListener);
         }, 2000);
 
 
@@ -320,6 +320,7 @@ var McDonoughEats = function ()
   // Finally, it places that content in the infoWindow and places it on the map.
   var mrkerActivate = function(data, event)
     {
+      collapseExpand();
       selectedRestaurant  = null;
       var contentString;
       selectedRestaurant  = data.name;
@@ -384,6 +385,15 @@ var McDonoughEats = function ()
           marker.setAnimation(null);
         }, 1400);
     }
+
+
+  var collapseExpand = function(){
+    $('placeLi').click(function()
+      {
+        $(this).parent.find('li').slideToggle();
+      });
+      return;
+    };
 
 
   // required by knockoutjs to initiate the viewmodel
