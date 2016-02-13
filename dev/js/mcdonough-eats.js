@@ -320,7 +320,7 @@ var McDonoughEats = function ()
   // Finally, it places that content in the infoWindow and places it on the map.
   var mrkerActivate = function(data, event)
     {
-      collapseExpand();
+      collapseExpand(data, event);
       selectedRestaurant  = null;
       var contentString;
       selectedRestaurant  = data.name;
@@ -387,11 +387,16 @@ var McDonoughEats = function ()
     }
 
 
-  var collapseExpand = function(){
-    $('placeLi').click(function()
-      {
-        $(this).parent.find('li').slideToggle();
-      });
+  var collapseExpand = function(data,event)
+    {
+      if(window.innerWidth < 1200)
+        {
+          $('#list').find('li').slideToggle('slow');
+          $('#rolldown').toggle('slow');
+          console.log('here is the size: ',window.innerWidth);
+          console.log('you clicked something');
+
+        }
       return;
     };
 

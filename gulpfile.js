@@ -82,12 +82,6 @@ gulp.task('html', function() {
   }
   return page.pipe(gulp.dest(html.out));
 });
-// add the README.md to the output
-gulp.task('readme', function() {
-  return gulp.src(readme.in)
-  .pipe(gulp.dest('.'))
-  .pipe(gulp.dest(readme.out));
-});
 
 
 // build css
@@ -122,7 +116,7 @@ gulp.task('js', function() {
 });
 
 // default task
-gulp.task('default', ['html', 'css', 'js', 'readme'], function() {
+gulp.task('default', ['html', 'css', 'js'], function() {
 // html changes
 gulp.watch(html.watch, ['html']);
 gulp.watch(css.watch, ['css']);

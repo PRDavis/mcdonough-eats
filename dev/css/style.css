@@ -18,6 +18,10 @@ h4{
   color: #000;
 }
 
+#rolldown {
+  display: none;
+}
+
 .placeLi {
   list-style: none;
   background-color: #e8ebe1;
@@ -95,5 +99,5 @@ overflow: scroll;
 }
 
 .gm-style {
-  overflow: hidden; 
+  overflow: hidden;
 }
