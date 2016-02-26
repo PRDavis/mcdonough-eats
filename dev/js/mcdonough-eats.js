@@ -43,7 +43,7 @@ var McDonoughEats = function ()
     },
     {
       name: 'Deep South Deli',
-      tel: '6783008999',
+      tel: '7703208999',//guy keeps changing his number was 678-300-8999
       visible:'TRUE'
     },
     {
@@ -93,14 +93,15 @@ var McDonoughEats = function ()
       markerArray=[];
       var bound = new google.maps.LatLngBounds();
       markerArray=workArray.slice();
-
       for (var j = 0; j<markerArray.length;j++)
         {
           markerArray[j].marker = new google.maps.Marker(
             {
               position: markerArray[j].latlng,
               title: markerArray[j].name,
-              map: map
+              map: map,
+              icon: 'http://maps.google.com/mapfiles/kml/pal2/icon36.png',
+              size: new google.maps.Size(120, 32)
             });
           bound.extend(markerArray[j].marker.getPosition());
 
@@ -176,7 +177,6 @@ var McDonoughEats = function ()
 
   var updateModel = function(k,data)
   {
-
     initialPlaces[k].review_count=data.businesses[0].review_count;
     initialPlaces[k].postal_code=data.businesses[0].location.postal_code;
     initialPlaces[k].state_code=data.businesses[0].location.state_code;
@@ -372,6 +372,12 @@ var McDonoughEats = function ()
 
               infowindow.setContent(contentString);
               infowindow.open(map, selectedMarker);
+              google.maps.event.addListener(infowindow, 'closeclick', function () {
+              makeMarker();
+              });
+
+
+
             }
         }
       return;
