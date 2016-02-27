@@ -1,3 +1,6 @@
+
+var mapReady=function(){
+
 /*  The McDonoughEats function acts as the ViewModel for this application.
 It also holds the model but maintains seperation of concerns using the MVVM design patter.
 */
@@ -408,13 +411,8 @@ var McDonoughEats = function ()
 
 
   // required by knockoutjs to initiate the viewmodel
-  var init = function ()
-    {
-      ko.applyBindings(McDonoughEats);
-    };
-
   //jQuery starts this file on document ready
-  $(init);
+//  $(init);
 
   //function returns
   return{
@@ -429,4 +427,6 @@ var McDonoughEats = function ()
     map: map,
     updateWorkArray: updateWorkArray
     };
-    }();
+    };
+    ko.applyBindings(new McDonoughEats());
+};
