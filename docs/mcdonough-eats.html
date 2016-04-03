@@ -30,61 +30,6 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*  The McDonoughEats function acts as the ViewModel for this application.
-It also holds the model but maintains seperation of concerns using the MVVM design patter.
-*/</span>
-
-<span class="hljs-keyword">var</span> McDonoughEats = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)
-</span>{
-  <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
-
-  <span class="hljs-comment">/* initialPlaces is an array of local restaurant names and phone numbers.
-  it acts as the initial data model */</span>
-  <span class="hljs-keyword">var</span> initialPlaces =
-  [
-    {
-      name: <span class="hljs-string">"Kirby G's"</span>,
-      tel: <span class="hljs-string">'6785838777'</span>,
-      visible:<span class="hljs-string">'TRUE'</span>
-    },
-    {
-      name: <span class="hljs-string">'Queen Bee Coffee'</span>,
-      tel: <span class="hljs-string">'6788832233'</span>,
-      visible:<span class="hljs-string">'TRUE'</span>
-    },
-
-    {
-      name: <span class="hljs-string">'Pasta Max'</span>,
-      tel: <span class="hljs-string">'7703209311'</span>,
-      visible:<span class="hljs-string">'TRUE'</span>
-    },
-    {
-      name: <span class="hljs-string">'South Side Diner'</span>,
-      tel: <span class="hljs-string">'6787592690'</span>,
-      visible:<span class="hljs-string">'TRUE'</span>
-    },
-    {
-      name: <span class="hljs-string">'Gritz'</span>,
-      tel: <span class="hljs-string">'7709140448'</span>,
-      visible:<span class="hljs-string">'TRUE'</span>
-    },
-    {
-      name: <span class="hljs-string">"Truett's Grill"</span>,
-      tel: <span class="hljs-string">'6784322221'</span>,
-      visible:<span class="hljs-string">'TRUE'</span>
-    },
-    {
-      name: <span class="hljs-string">'Deep South Deli'</span>,
-      tel: <span class="hljs-string">'6783008999'</span>,
-      visible:<span class="hljs-string">'TRUE'</span>
-    },
-    {
-      name: <span class="hljs-string">"Mikie's Big Burger"</span>,
-      tel: <span class="hljs-string">'7709544306'</span>,
-      visible:<span class="hljs-string">'TRUE'</span>
-    }
-  ];</pre></div></div>
-            
         </li>
         
         
@@ -94,23 +39,11 @@ It also holds the model but maintains seperation of concerns using the MVVM desi
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>additional model variables
-since this app utilizes the knockoutjs framework there are knockout observables used here</p>
+              <p>This function is called after the google maps script returns.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> map;
-  <span class="hljs-keyword">var</span> workArray = ko.observableArray();
-  <span class="hljs-keyword">var</span> markerArray ;
-  <span class="hljs-keyword">var</span> yelpAttrib= ko.observable(<span class="hljs-string">'http://www.yelp.com'</span>) ;
-  <span class="hljs-keyword">var</span> yelpImgAttrib= ko.observable(<span class="hljs-string">'https://s3-media1.fl.yelpcdn.com/assets/srv0/developer_pages/dc8ff90d5d7d/assets/img/Powered_By_Yelp_Black.png'</span>);
-  <span class="hljs-keyword">var</span> userInput = ko.observable(<span class="hljs-string">""</span>);
-  <span class="hljs-keyword">var</span> lenInitialPlaces = initialPlaces.length;
-  <span class="hljs-keyword">var</span> bound = <span class="hljs-keyword">new</span> google.maps.LatLngBounds();
-  <span class="hljs-keyword">var</span> selectedRestaurant = ko.observable(<span class="hljs-string">""</span>);
-  <span class="hljs-keyword">var</span> infowindow = <span class="hljs-keyword">new</span> google.maps.InfoWindow({
-    content: <span class="hljs-string">''</span>
-  });</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> mapReady = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</pre></div></div>
             
         </li>
         
@@ -121,12 +54,14 @@ since this app utilizes the knockoutjs framework there are knockout observables 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>initiate the google map</p>
+              <p>The McDonoughEats function acts as the ViewModel for this application.
+ It also holds the model but maintains seperation of concerns using the MVVM design pattern.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> initMap = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
-    </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+
+  <span class="hljs-keyword">var</span> McDonoughEats = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{</pre></div></div>
             
         </li>
         
@@ -137,18 +72,11 @@ since this app utilizes the knockoutjs framework there are knockout observables 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>put the map in the mapbox element and center it on the target city</p>
+              <p>The array allPlaces is the observableArray that holds all of the place objects.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      map = <span class="hljs-keyword">new</span> google.maps.Map(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'mapBox'</span>),
-        {
-          center: {lat: <span class="hljs-number">33.4469617</span>, lng: -<span class="hljs-number">84.1419653</span>},
-          scrollwheel: <span class="hljs-literal">false</span>,
-          zoom: <span class="hljs-number">13</span>,
-          mapTypeId: google.maps.MapTypeId.TERRAIN
-        });
-    }());</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    allPlaces=ko.observableArray();</pre></div></div>
             
         </li>
         
@@ -159,32 +87,73 @@ since this app utilizes the knockoutjs framework there are knockout observables 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>makeMarker function deletes any existing markers, and then creates a marker for each element in the workArray</p>
+              <p>This is the place constructor.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> makeMarker = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
-    </span>{
-      <span class="hljs-keyword">if</span> (markerArray)
-        {
-          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i &lt; markerArray.length; i++)
-            {
-              markerArray[i].marker.setMap(<span class="hljs-literal">null</span>);
-            }
-        }
-      markerArray=[];
-      <span class="hljs-keyword">var</span> bound = <span class="hljs-keyword">new</span> google.maps.LatLngBounds();
-      markerArray=workArray.slice();
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Place</span>(<span class="hljs-params">tel,data</span>)</span>{
+      <span class="hljs-keyword">this</span>.tel=tel;
+      <span class="hljs-keyword">this</span>.visible= ko.observable(<span class="hljs-string">'true'</span>);
+      <span class="hljs-keyword">this</span>.name= data.businesses[<span class="hljs-number">0</span>].name;
+      <span class="hljs-keyword">this</span>.review_count= data.businesses[<span class="hljs-number">0</span>].review_count;
+      <span class="hljs-keyword">this</span>.postal_code=data.businesses[<span class="hljs-number">0</span>].location.postal_code;
+      <span class="hljs-keyword">this</span>.state_code=data.businesses[<span class="hljs-number">0</span>].location.state_code;
+      <span class="hljs-keyword">this</span>.city=data.businesses[<span class="hljs-number">0</span>].location.city;
+      <span class="hljs-keyword">this</span>.address=data.businesses[<span class="hljs-number">0</span>].location.address;
+      <span class="hljs-keyword">this</span>.snippet_text=data.businesses[<span class="hljs-number">0</span>].snippet_text;
+      <span class="hljs-keyword">this</span>.snippet_image_url=data.businesses[<span class="hljs-number">0</span>].snippet_image_url;
+      <span class="hljs-keyword">this</span>.image_url=data.businesses[<span class="hljs-number">0</span>].image_url;
+      <span class="hljs-keyword">this</span>.rating_img_url=data.businesses[<span class="hljs-number">0</span>].rating_img_url;
+      <span class="hljs-keyword">this</span>.review_count=data.businesses[<span class="hljs-number">0</span>].review_count;
+      <span class="hljs-keyword">this</span>.url=data.businesses[<span class="hljs-number">0</span>].url;
+      <span class="hljs-keyword">this</span>.latitude=data.businesses[<span class="hljs-number">0</span>].location.coordinate.latitude;
+      <span class="hljs-keyword">this</span>.makeViz = makeViz;
+      <span class="hljs-keyword">this</span>.currentlySelected = ko.observable(<span class="hljs-string">'false'</span>);
+      <span class="hljs-keyword">this</span>.marker={};
+      <span class="hljs-keyword">this</span>.markerBounce=markerBounce;
+      <span class="hljs-keyword">this</span>.stopBounce = stopBounce;
+      <span class="hljs-keyword">this</span>.setMarker = setMarker;
+      <span class="hljs-keyword">this</span>.makeMarker = makeMarker;
+      <span class="hljs-keyword">this</span>.clearMarker = clearMarker;
+      <span class="hljs-keyword">this</span>.longitude=data.businesses[<span class="hljs-number">0</span>].location.coordinate.longitude;
+      <span class="hljs-keyword">this</span>.latlng ={
+        lat: <span class="hljs-keyword">this</span>.latitude,
+        lng: <span class="hljs-keyword">this</span>.longitude
+      };
+      <span class="hljs-keyword">this</span>.contentString = <span class="hljs-string">'&lt;div id="infoWindowContainer"&gt;'</span>+
+      <span class="hljs-string">'&lt;h2 class="infoWindowHeader"&gt;'</span>+<span class="hljs-keyword">this</span>.name+<span class="hljs-string">'&lt;/h2&gt;'</span>+
+      <span class="hljs-string">'&lt;div class ="row" id="imageRow"&gt;'</span>+
+      <span class="hljs-string">'&lt;div class = "col-md-2 col-sm-2 col-xs-2" id = "restPic"&gt;'</span>+
+      <span class="hljs-string">'&lt;img src='</span>+<span class="hljs-keyword">this</span>.image_url+<span class="hljs-string">'&gt;'</span>+
+      <span class="hljs-string">'&lt;/div&gt;'</span>+
+      <span class="hljs-string">'&lt;div class = "col-md-2 col-sm-2 col-xs-2" id = "snippetPic"&gt;'</span>+
+      <span class="hljs-string">'&lt;img class= "snippetPic" src='</span>+<span class="hljs-keyword">this</span>.snippet_image_url+<span class="hljs-string">'&gt;'</span>+
+      <span class="hljs-string">'&lt;/div&gt;'</span>+
+      <span class="hljs-string">'&lt;div class =  "col-lg-8 hidden-md hidden-sm hidden-xs"&gt;'</span>+
+      <span class="hljs-string">'&lt;p id="introText"&gt; Click the telephone number to call this restaurant, or click the link below for more information:&lt;/p&gt;'</span>+
+      <span class="hljs-string">'&lt;p class = "snippetText"&gt;'</span>+<span class="hljs-keyword">this</span>.snippet_text+<span class="hljs-string">'&lt;/p&gt;'</span>+
+      <span class="hljs-string">'&lt;/div&gt;'</span>+
+      <span class="hljs-string">'&lt;/div&gt;'</span>+
+      <span class="hljs-string">'&lt;div class = "row" id ="addressRow"&gt;'</span>+
+      <span class="hljs-string">'&lt;div class="col-lg-12 hidden-md hidden-sm hidden-xs"&gt;'</span>+
+      <span class="hljs-string">'&lt;p id="addressP"&gt;&lt;b&gt; Address: '</span>+ <span class="hljs-keyword">this</span>.address+<span class="hljs-string">', '</span>+<span class="hljs-keyword">this</span>.city+<span class="hljs-string">', '</span>+<span class="hljs-keyword">this</span>.state_code+<span class="hljs-string">' '</span>+<span class="hljs-keyword">this</span>.postal_code + <span class="hljs-string">'&lt;/b&gt;&lt;/p&gt;'</span>+
+      <span class="hljs-string">'&lt;/div&gt;'</span>+
+      <span class="hljs-string">'&lt;/div&gt;'</span>+
+      <span class="hljs-string">'&lt;div class = "row" id = "phoneRow"&gt;'</span>+
+      <span class="hljs-string">'&lt;div class="col-md-12 col-sm-12 col-xs-12"&gt;'</span>+
+      <span class="hljs-string">'&lt;p id="phoneP"&gt;&lt;b&gt; Phone: '</span>+<span class="hljs-string">'&lt;a href=tel:'</span>+ <span class="hljs-keyword">this</span>.tel+<span class="hljs-string">'&gt;'</span>+ <span class="hljs-string">'('</span>+<span class="hljs-keyword">this</span>.tel.slice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>)+<span class="hljs-string">') '</span>+<span class="hljs-keyword">this</span>.tel.slice(<span class="hljs-number">3</span>,<span class="hljs-number">6</span>)+<span class="hljs-string">'-'</span>+<span class="hljs-keyword">this</span>.tel.slice(<span class="hljs-number">6</span>,<span class="hljs-number">10</span>)+<span class="hljs-string">'&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;'</span>+
+      <span class="hljs-string">'&lt;/div&gt;'</span>+
+      <span class="hljs-string">'&lt;/div&gt;'</span>+
+      <span class="hljs-string">'&lt;img src='</span>+<span class="hljs-keyword">this</span>.rating_img_url+<span class="hljs-string">'&gt;'</span>+
+      <span class="hljs-keyword">this</span>.review_count+<span class="hljs-string">' reviews  '</span>+
+      <span class="hljs-string">'&lt;img id='</span>+<span class="hljs-string">'"infoWinYelpImg"'</span> + <span class="hljs-string">'src='</span>+yelpImgAttrib()+<span class="hljs-string">'&gt;'</span>+
 
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j&lt;markerArray.length;j++)
-        {
-          markerArray[j].marker = <span class="hljs-keyword">new</span> google.maps.Marker(
-            {
-              position: markerArray[j].latlng,
-              title: markerArray[j].name,
-              map: map
-            });
-          bound.extend(markerArray[j].marker.getPosition());</pre></div></div>
+      <span class="hljs-string">'&lt;p&gt; &lt;a href='</span>+<span class="hljs-keyword">this</span>.url+<span class="hljs-string">' target="_blank"&gt;Click here to visit this page on Yelp.com'</span>+
+      <span class="hljs-string">'&lt;/p&gt;&lt;/a&gt;'</span>+
+      <span class="hljs-string">'&lt;/div&gt;'</span>+
+      <span class="hljs-string">'&lt;/div&gt;'</span>;
+      <span class="hljs-keyword">return</span>;
+    }</pre></div></div>
             
         </li>
         
@@ -195,14 +164,22 @@ since this app utilizes the knockoutjs framework there are knockout observables 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>click listener for markers</p>
+              <p> The initialPlaces array holds local restaurant phone numbers.
+ It acts as the initial data model.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>          setClickListener(markerArray[j].marker, markerArray[j]);
-        }
-      <span class="hljs-keyword">if</span> (markerArray.length &gt; <span class="hljs-number">1</span>)
-        {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">var</span> initialPlaces = [
+
+      {tel: <span class="hljs-string">'7709544306'</span>}, <span class="hljs-comment">//name: "Mikie's Big Burger"</span>
+      {tel: <span class="hljs-string">'6785838777'</span>}, <span class="hljs-comment">//name: "Kirby G's"</span>
+      {tel: <span class="hljs-string">'6787592690'</span>}, <span class="hljs-comment">//name: 'South Side Diner'</span>
+      {tel: <span class="hljs-string">'7703209311'</span>}, <span class="hljs-comment">//name: 'Pasta Max'</span>
+      {tel: <span class="hljs-string">'7709140448'</span>}, <span class="hljs-comment">//name: 'Gritz'</span>
+      {tel: <span class="hljs-string">'6784322221'</span>}, <span class="hljs-comment">//name: "Truett's Grill",</span>
+      {tel: <span class="hljs-string">'6788832233'</span>}  <span class="hljs-comment">//name: 'Queen Bee Coffee'</span>
+    ];</pre></div></div>
             
         </li>
         
@@ -213,32 +190,20 @@ since this app utilizes the knockoutjs framework there are knockout observables 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>change the map zoom to the remaining locations</p>
+              <p>Model variables:</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>          map.fitBounds(bound);
-        }
-      <span class="hljs-keyword">if</span> (markerArray.length ===<span class="hljs-number">1</span>)
-        {
-          map.setZoom(<span class="hljs-number">19</span>);
-          <span class="hljs-keyword">var</span> singleLocation = markerArray[<span class="hljs-number">0</span>].marker.getPosition();
-          map.setCenter(singleLocation);
-        }
-      zoomListener = google.maps.event.addListenerOnce(map, <span class="hljs-string">'change zoom'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)
-        </span>{
-          map.setCenter(bound.getCenter());
-        });
-      setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
-        </span>{
-          google.maps.event.removeListener(zoomListener)
-        }, <span class="hljs-number">2000</span>);
-
-
-
-
-
-    };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> map;
+    <span class="hljs-keyword">var</span> yelpAttrib= ko.observable(<span class="hljs-string">'http://www.yelp.com'</span>) ;
+    <span class="hljs-keyword">var</span> yelpImgAttrib= ko.observable(<span class="hljs-string">'https://s3-media2.fl.yelpcdn.com/assets/srv0/developer_pages/9bfe343c35cc/assets/img/yelp_powered_btn_light@2x.png'</span>);
+    <span class="hljs-keyword">var</span> userInput = ko.observable(<span class="hljs-string">""</span>);
+    <span class="hljs-keyword">var</span> lenInitialPlaces = initialPlaces.length;
+    <span class="hljs-keyword">var</span> bound = <span class="hljs-keyword">new</span> google.maps.LatLngBounds();
+    <span class="hljs-keyword">var</span> selectedRestaurant = ko.observable(<span class="hljs-string">""</span>);
+    <span class="hljs-keyword">var</span> infowindow = <span class="hljs-keyword">new</span> google.maps.InfoWindow({
+      content: <span class="hljs-string">''</span>
+    });</pre></div></div>
             
         </li>
         
@@ -249,19 +214,11 @@ since this app utilizes the knockoutjs framework there are knockout observables 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>on marker click pass the clicked marker to the marker activate function</p>
+              <p>Initiate the google map.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> setClickListener = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, name</span>)
-    </span>{
-      <span class="hljs-keyword">var</span> dummy;
-      data.addListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)
-        </span>{
-          mrkerActivate(name  , dummy);
-        });
-      <span class="hljs-keyword">return</span>;
-    };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> initMap = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</pre></div></div>
             
         </li>
         
@@ -272,32 +229,17 @@ since this app utilizes the knockoutjs framework there are knockout observables 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>updateWorkArray changes the work array whenever the sort changes or the data model changes</p>
+              <p>Put the map in the mapbox element and center it on the target city.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> updateWorkArray = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
-    </span>{
-      workArray([]);
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> k=<span class="hljs-number">0</span>;k&lt;lenInitialPlaces;k++)
-        {
-          <span class="hljs-keyword">if</span> (initialPlaces[k].visible == <span class="hljs-string">'TRUE'</span>)
-            {
-              workArray.push(initialPlaces[k]);
-            }
-        }
-      <span class="hljs-keyword">if</span> (workArray().length &gt;= <span class="hljs-number">1</span>)
-        {
-          <span class="hljs-keyword">if</span> (workArray()[workArray().length-<span class="hljs-number">1</span>].latitude)
-            {
-              makeMarker();
-            }
-        }
-      <span class="hljs-keyword">if</span> (workArray().length === <span class="hljs-number">0</span>)
-        {
-          makeMarker();
-        }
-    };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      map = <span class="hljs-keyword">new</span> google.maps.Map(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'mapBox'</span>),{
+        center: {lat: <span class="hljs-number">33.4469617</span>, lng: -<span class="hljs-number">84.1419653</span>},
+        scrollwheel: <span class="hljs-literal">false</span>,
+        zoom: <span class="hljs-number">13</span>,
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+      });
+    }());</pre></div></div>
             
         </li>
         
@@ -308,39 +250,16 @@ since this app utilizes the knockoutjs framework there are knockout observables 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p>updateModel takes the data returned by the ajax request and adds the desired parts to the initialPlaces
-array elements</p>
+              <p>Add marker click listener.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-
-  <span class="hljs-keyword">var</span> updateModel = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">k,data</span>)
-  </span>{
-
-    initialPlaces[k].review_count=data.businesses[<span class="hljs-number">0</span>].review_count;
-    initialPlaces[k].postal_code=data.businesses[<span class="hljs-number">0</span>].location.postal_code;
-    initialPlaces[k].state_code=data.businesses[<span class="hljs-number">0</span>].location.state_code;
-    initialPlaces[k].city=data.businesses[<span class="hljs-number">0</span>].location.city;
-    initialPlaces[k].address=data.businesses[<span class="hljs-number">0</span>].location.address;
-    initialPlaces[k].snippet_text=data.businesses[<span class="hljs-number">0</span>].snippet_text;
-    initialPlaces[k].snippet_image_url=data.businesses[<span class="hljs-number">0</span>].snippet_image_url;
-    initialPlaces[k].image_url=data.businesses[<span class="hljs-number">0</span>].image_url;
-    initialPlaces[k].rating_img_url=data.businesses[<span class="hljs-number">0</span>].rating_img_url;
-    initialPlaces[k].review_count=data.businesses[<span class="hljs-number">0</span>].review_count;
-    initialPlaces[k].url=data.businesses[<span class="hljs-number">0</span>].url;
-    initialPlaces[k].latitude=data.businesses[<span class="hljs-number">0</span>].location.coordinate.latitude;
-    initialPlaces[k].longitude=data.businesses[<span class="hljs-number">0</span>].location.coordinate.longitude;
-    initialPlaces[k].latlng =
-      {
-        lat: initialPlaces[k].latitude,
-        lng: initialPlaces[k].longitude
-      };
-    updateWorkArray();
-  };
-
-
-  <span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;</pre></div></div>
+    <span class="hljs-keyword">var</span> addMarkerListener = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{
+      google.maps.event.addListener(data.marker, <span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)</span>{
+        markerClicked(data.name);
+      });
+    };</pre></div></div>
             
         </li>
         
@@ -351,14 +270,20 @@ array elements</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <p>The yelpInfo function contains the keys needed to utilize the OAuth authentication process for the Yelp API</p>
+              <p>Instantiate markers.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> yelpInfo = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
-    </span>{
-      <span class="hljs-keyword">var</span> auth =
-        {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> makeMarker = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">this</span>.marker = <span class="hljs-keyword">new</span> google.maps.Marker({
+        position: <span class="hljs-keyword">this</span>.latlng,
+        title: <span class="hljs-keyword">this</span>.name,
+        map: map,
+        icon: <span class="hljs-string">'http://maps.google.com/mapfiles/kml/pal2/icon36.png'</span>,
+        size: <span class="hljs-keyword">new</span> google.maps.Size(<span class="hljs-number">120</span>, <span class="hljs-number">32</span>)
+      });
+      <span class="hljs-keyword">return</span>;
+    };</pre></div></div>
             
         </li>
         
@@ -369,27 +294,27 @@ array elements</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>Yelp OAuth data</p>
+              <p>Populates the markerArray and makes map boundries from the current marker set.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>          consumerKey: <span class="hljs-string">"sB9MQlZkUAFlQR5P8iRwCw"</span>,
-          consumerSecret: <span class="hljs-string">"HQb8up0L05VUZVjMEzAAxm_XIx4"</span>,
-          accessToken: <span class="hljs-string">"7dsLP8pY0a17kCRjPlFlSIplD4l1J77c"</span>,
-          accessTokenSecret: <span class="hljs-string">"sL9Hj1nFYN3HvRMKI4_ph8bvQdE"</span>,
-          serviceProvider:
-            {
-              signatureMethod: <span class="hljs-string">"HMAC-SHA1"</span>
-            }
-        };
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> setBounds = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      markerArray=[];
+      bound = <span class="hljs-keyword">new</span> google.maps.LatLngBounds();
 
+      <span class="hljs-keyword">var</span> populateMarkerArray=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> counter3 = <span class="hljs-number">0</span>; counter3&lt;allPlaces().length;counter3++){
+          <span class="hljs-keyword">if</span>(allPlaces()[counter3].visible() === <span class="hljs-string">'true'</span>){
+            markerArray.push(allPlaces()[counter3]);
+          }
+        }
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> counter6 = <span class="hljs-number">0</span>; counter6 &lt; markerArray.length; counter6++){
+          bound.extend(markerArray[counter6].marker.getPosition());
+        }
+      };
 
-
-      <span class="hljs-keyword">var</span> accessor =
-        {
-          consumerSecret: auth.consumerSecret,
-          tokenSecret: auth.accessTokenSecret
-        };</pre></div></div>
+      populateMarkerArray();
+      <span class="hljs-keyword">if</span> (markerArray.length &gt; <span class="hljs-number">1</span>){</pre></div></div>
             
         </li>
         
@@ -400,7 +325,142 @@ array elements</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>configuration of the oauth parameters array</p>
+              <p>Change the map zoom to the remaining locations.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        map.fitBounds(bound);
+      }
+      <span class="hljs-keyword">if</span> (markerArray.length === <span class="hljs-number">1</span>){
+        map.setZoom(<span class="hljs-number">19</span>);
+        <span class="hljs-keyword">var</span> singleLocation = markerArray[<span class="hljs-number">0</span>].marker.getPosition();
+        map.setCenter(singleLocation);
+      }
+      zoomListener = google.maps.event.addListenerOnce(map, <span class="hljs-string">'change zoom'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)</span>{
+        map.setCenter(bound.getCenter());
+      });
+      setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        google.maps.event.removeListener(zoomListener);
+      }, <span class="hljs-number">2000</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Add a click listener for each marker.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> counter4 = <span class="hljs-number">0</span>; counter4 &lt; markerArray.length; counter4++){
+        addMarkerListener(markerArray[counter4]);
+      }
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Remove !visible markers from map.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> clearMarker = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.visible() === <span class="hljs-string">'false'</span> ){
+        <span class="hljs-keyword">this</span>.marker.setMap(<span class="hljs-literal">null</span>);
+      }
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Place visible markers on map.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> setMarker = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.visible() === <span class="hljs-string">'true'</span> ){
+        <span class="hljs-keyword">this</span>.marker.setMap(map);
+      }
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Function updateModel instantiates the place objects with the data returned from the ajax request to the yelp api and places them in the allPlaces array.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> updateModel = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">tel,data</span>)</span>{
+      allPlaces.push(<span class="hljs-keyword">new</span> Place(tel,data));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Done? Make the markers.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span>(allPlaces().length==initialPlaces.length){
+        markerInit();
+      }
+    };
+
+
+    <span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>The yelpInfo function uses the keys needed to utilize the OAuth authentication process for the Yelp API - the keys are in the data.js file.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> yelpInfo = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Configure the oauth parameters array.</p>
 
             </div>
             
@@ -415,33 +475,32 @@ array elements</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
-              <p>configures the getter for oauth</p>
+              <p>Configure the getter for oauth.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> message =
-        {
-          <span class="hljs-string">'action'</span>: <span class="hljs-string">'http://api.yelp.com/v2/phone_search?'</span>,
-          <span class="hljs-string">'method'</span>: <span class="hljs-string">'GET'</span>,
-          <span class="hljs-string">'parameters'</span>: parameters
-        };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> message = {
+        <span class="hljs-string">'action'</span>: <span class="hljs-string">'http://api.yelp.com/v2/phone_search?'</span>,
+        <span class="hljs-string">'method'</span>: <span class="hljs-string">'GET'</span>,
+        <span class="hljs-string">'parameters'</span>: parameters
+      };</pre></div></div>
             
         </li>
         
         
-        <li id="section-15">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
-              <p>makes the authentication call</p>
+              <p>Make the authentication call.</p>
 
             </div>
             
@@ -453,236 +512,51 @@ array elements</p>
         </li>
         
         
-        <li id="section-16">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
-              </div>
-              <p>Once authenticated makes the ajax request for the entries in the data model.
-An ajax failure returns an alert advising the user to retry.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-      <span class="hljs-keyword">var</span> yelpRequest = $.ajax(
-        {
-          url: message.action,
-          data: parameterMap,
-          cache: <span class="hljs-literal">true</span>,
-          dataType: <span class="hljs-string">'jsonp'</span>,
-          timeout: <span class="hljs-number">5000</span>
-        });
-
-      yelpRequest.error(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr, statusText</span>)
-        </span>{
-          alert(<span class="hljs-string">"Sorry, something went wrong when trying to reach Yelp.com, please try again."</span>);
-        });
-
-      yelpRequest.success(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)
-        </span>{
-          <span class="hljs-keyword">if</span> ( i &lt; lenInitialPlaces)
-            {
-              updateModel(i,data);
-              i++;
-              <span class="hljs-keyword">if</span> (i&lt;lenInitialPlaces)
-                {
-                  yelpInfo();
-                }
-            }
-        });
-    };  <span class="hljs-comment">//closes yelpInfo</span>
-
-  yelpInfo();</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-17">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
-              </div>
-              <p>sets the visible property based on searchbox state</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> makeViz = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
-    </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-18">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
-              </div>
-              <p>if the searchbox is empty mark all items visible</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (userInput.toLowerCase === <span class="hljs-string">""</span>)
-        {
-          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> n = <span class="hljs-number">0</span>; n &lt; lenInitialPlaces; n++)
-            {
-              initialPlaces[n].visible=<span class="hljs-string">'TRUE'</span>;
-            }
-        }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-19">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
-              </div>
-              <p>if something is in the search box compare it to the names of the places
-if there is not a  match mark initialPlaces.visible as FALSE
-else mark “TRUE”</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> rex = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>($(<span class="hljs-string">'#searchBox'</span>).val(), <span class="hljs-string">"i"</span>);
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> p = <span class="hljs-number">0</span>; p &lt;lenInitialPlaces; p++)
-          {
-            <span class="hljs-keyword">if</span> (!rex.test(initialPlaces[p].name))
-              {
-                initialPlaces[p].visible =<span class="hljs-string">'FALSE'</span>;
-              }
-            <span class="hljs-keyword">else</span>
-              {
-                initialPlaces[p].visible =<span class="hljs-string">'TRUE'</span>;
-              }
-          }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-20">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
-              </div>
-              <p>since the data model changed, update the workArray</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        updateWorkArray();
-    };</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-21">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
-              </div>
-              <p>mrkerActivate clears any existing selectedRestaurant, then updates the selectedRestaurant.
-Once set, it iterates through the markerArray and when it finds a matching marker name it bounces the marker and then stops the bounces.
-Next, it populates the contentString used to populate the infoWindow.
-Finally, it places that content in the infoWindow and places it on the map.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> mrkerActivate = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, event</span>)
-    </span>{
-      selectedRestaurant  = <span class="hljs-literal">null</span>;
-      <span class="hljs-keyword">var</span> contentString;
-      selectedRestaurant  = data.name;
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j=<span class="hljs-number">0</span>; j &lt; markerArray.length; j++)
-        {
-          markerArray[j].marker.setAnimation(<span class="hljs-literal">null</span>);
-          <span class="hljs-keyword">if</span> (markerArray[j].name == selectedRestaurant)
-            {
-              <span class="hljs-keyword">var</span> selectedMarker = markerArray[j].marker;
-              selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
-              stopBounce(selectedMarker);
-              <span class="hljs-keyword">var</span> currentAddress = markerArray[j].address+<span class="hljs-string">', '</span>+markerArray[j].city+<span class="hljs-string">', '</span>+markerArray[j].state_code+<span class="hljs-string">' '</span>+markerArray[j].postal_code;
-              <span class="hljs-keyword">var</span> currentPhone = <span class="hljs-string">'('</span>+markerArray[j].tel.slice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>)+<span class="hljs-string">') '</span>+markerArray[j].tel.slice(<span class="hljs-number">3</span>,<span class="hljs-number">6</span>)+<span class="hljs-string">'-'</span>+markerArray[j].tel.slice(<span class="hljs-number">6</span>,<span class="hljs-number">10</span>);
-              <span class="hljs-keyword">var</span> currentSnippetText = markerArray[j].snippet_text;
-              contentString =
-              <span class="hljs-string">'&lt;div id="infoWindowContainer"&gt;'</span>+
-                <span class="hljs-string">'&lt;h2 class="infoWindowHeader"&gt;'</span>+selectedRestaurant+<span class="hljs-string">'&lt;/h2&gt;'</span>+
-                <span class="hljs-string">'&lt;div class ="row" id="imageRow"&gt;'</span>+
-                  <span class="hljs-string">'&lt;div class = "col-md-2 col-sm-2 col-xs-2" id = "restPic"&gt;'</span>+
-                    <span class="hljs-string">'&lt;img src='</span>+markerArray[j].image_url+<span class="hljs-string">'&gt;'</span>+
-                  <span class="hljs-string">'&lt;/div&gt;'</span>+
-                  <span class="hljs-string">'&lt;div class = "col-md-2 col-sm-2 col-xs-2" id = "snippetPic"&gt;'</span>+
-                    <span class="hljs-string">'&lt;img class= "snippetPic" src='</span>+markerArray[j].snippet_image_url+<span class="hljs-string">'&gt;'</span>+
-                  <span class="hljs-string">'&lt;/div&gt;'</span>+
-                  <span class="hljs-string">'&lt;div class =  "col-md-8 col-sm-8 hidden-sm hidden-xs"&gt;'</span>+
-                    <span class="hljs-string">'&lt;p id="introText"&gt; Click the telephone number to call this restaurant, or click the link below for more information:&lt;/p&gt;'</span>+
-                    <span class="hljs-string">'&lt;p class = "snippetText"&gt;'</span>+currentSnippetText+<span class="hljs-string">'&lt;/p&gt;'</span>+
-                  <span class="hljs-string">'&lt;/div&gt;'</span>+
-                <span class="hljs-string">'&lt;/div&gt;'</span>+
-              <span class="hljs-string">'&lt;div class = "row" id ="addressRow"&gt;'</span>+
-                <span class="hljs-string">'&lt;div class="col-md-12 col-sm-12 hidden-sm hidden-xs"&gt;'</span>+
-                  <span class="hljs-string">'&lt;p id="addressP"&gt;&lt;b&gt; Address: '</span>+ currentAddress + <span class="hljs-string">'&lt;/b&gt;&lt;/p&gt;'</span>+
-                <span class="hljs-string">'&lt;/div&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>+
-              <span class="hljs-string">'&lt;div class = "row" id = "phoneRow"&gt;'</span>+
-                <span class="hljs-string">'&lt;div class="col-md-12 col-sm-12 col-xs-12"&gt;'</span>+
-                  <span class="hljs-string">'&lt;p id="phoneP"&gt;&lt;b&gt; Phone: '</span>+<span class="hljs-string">'&lt;a href=tel:'</span>+ markerArray[j].tel+<span class="hljs-string">'&gt;'</span>+ currentPhone+<span class="hljs-string">'&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;'</span>+
-                <span class="hljs-string">'&lt;/div&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>+
-              <span class="hljs-string">'&lt;img src='</span>+markerArray[j].rating_img_url+<span class="hljs-string">'&gt;'</span>+
-              markerArray[j].review_count+<span class="hljs-string">' reviews  '</span>+
-              <span class="hljs-string">'&lt;img src='</span>+yelpImgAttrib()+<span class="hljs-string">'&gt;'</span>+
-
-              <span class="hljs-string">'&lt;p&gt; &lt;a href='</span>+markerArray[j].url+<span class="hljs-string">' target="_blank"&gt;Click here to visit this page on Yelp.com'</span>+
-              <span class="hljs-string">'&lt;/p&gt;&lt;/a&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>+
-              <span class="hljs-string">'&lt;/div&gt;'</span>;</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-22">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
-              </div>
-              <p>var infoWindowOptions = { max-width: 75%};</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-              infowindow.setContent(contentString);
-              infowindow.open(map, selectedMarker);
-            }
-        }
-      <span class="hljs-keyword">return</span>;
-    };</pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
-              <p>stops the map marker bounce after approx 2 bounces</p>
+              <p>Once authenticated, make the ajax requests for the entries in the data model.
+An ajax failure returns an alert advising the user to retry.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stopBounce</span>(<span class="hljs-params">marker</span>)
-    </span>{
-      setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)
-        </span>{
-          marker.setAnimation(<span class="hljs-literal">null</span>);
-        }, <span class="hljs-number">1400</span>);
-    }</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+      <span class="hljs-keyword">var</span> yelpRequest = $.ajax({
+        url: message.action,
+        data: parameterMap,
+        cache: <span class="hljs-literal">true</span>,
+        dataType: <span class="hljs-string">'jsonp'</span>,
+        timeout: <span class="hljs-number">5000</span>
+      });
+
+      yelpRequest.error(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr, statusText</span>)</span>{
+        alert(<span class="hljs-string">"Sorry, something went wrong when trying to reach Yelp.com, please try again."</span>);
+      });
+
+      yelpRequest.success(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{
+        <span class="hljs-keyword">if</span> ( i &lt; lenInitialPlaces){
+          updateModel(parameters[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>],data);
+          i++;
+          <span class="hljs-keyword">if</span> (i&lt;lenInitialPlaces){
+            yelpInfo();
+          }
+        }
+      });
+    };  <span class="hljs-comment">//End of yelpInfo.</span>
+
+    yelpInfo();
+
+
+    <span class="hljs-keyword">var</span> markerInit = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> counter=<span class="hljs-number">0</span>;counter &lt; allPlaces().length; counter++){
+        allPlaces()[counter].makeMarker();
+      }
+      setBounds();
+      <span class="hljs-keyword">return</span>;
+    };</pre></div></div>
             
         </li>
         
@@ -693,13 +567,12 @@ Finally, it places that content in the infoWindow and places it on the map.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
-              <p>required by knockoutjs to initiate the viewmodel</p>
+              <p>A list item was clicked. Pass the object name to markerClicked.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> init = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)
-    </span>{
-      ko.applyBindings(McDonoughEats);
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> placeClicked = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      markerClicked(<span class="hljs-keyword">this</span>.name);
     };</pre></div></div>
             
         </li>
@@ -711,11 +584,12 @@ Finally, it places that content in the infoWindow and places it on the map.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
-              <p>jQuery starts this file on document ready</p>
+              <p>Match the clicked item to the marker, then bounce the marker and show the infowindow.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  $(init);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> markerClicked = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, event</span>)</span>{
+      selectedRestaurant  = <span class="hljs-literal">null</span>;</pre></div></div>
             
         </li>
         
@@ -726,23 +600,214 @@ Finally, it places that content in the infoWindow and places it on the map.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
-              <p>function returns</p>
+              <p>This is the name of the restaurant for the clicked marker.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">return</span>{
-    mrkerActivate: mrkerActivate,
-    userInput: userInput,
-    makeViz: makeViz,
-    yelpAttrib: yelpAttrib,
-    yelpImgAttrib: yelpImgAttrib,
-    workArray: workArray,
-    makeMarker: makeMarker,
-    initMap: initMap,
-    map: map,
-    updateWorkArray: updateWorkArray
+            <div class="content"><div class='highlight'><pre>      selectedRestaurant  = data;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Match the marker to the correct object</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j=<span class="hljs-number">0</span>; j &lt; allPlaces().length; j++){
+        <span class="hljs-keyword">if</span> (allPlaces()[j].name == selectedRestaurant){</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Bounce the marker.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          allPlaces()[j].markerBounce();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Stop the marker bounce.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          allPlaces()[j].stopBounce(allPlaces()[j]);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Populate and display the infowindow.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          infowindow.setContent(allPlaces()[j].contentString);
+          infowindow.open(map, allPlaces()[j].marker);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>Set the map boundaries on infowindow close.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          google.maps.event.addListener(infowindow, <span class="hljs-string">'closeclick'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            map.fitBounds(bound);
+          });
+        }
+      }
+
+      <span class="hljs-keyword">return</span>;
     };
-    }();</pre></div></div>
+
+    <span class="hljs-keyword">var</span> checkViz = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> counter1=<span class="hljs-number">0</span>;counter1&lt;allPlaces().length;counter1++){
+        allPlaces()[counter1].makeViz();
+        allPlaces()[counter1].clearMarker();
+        allPlaces()[counter1].setMarker();
+      }
+      setBounds();
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>Sets the visible property based on searchbox state.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> makeViz = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>If the searchbox is empty, mark all items visible.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (userInput() === <span class="hljs-string">''</span>){
+        <span class="hljs-keyword">this</span>.visible(<span class="hljs-string">'true'</span>);
+      }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>If something is in the search box, compare it to the names of the places.
+If there is not a match, mark visible as false,
+else mark true.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+      <span class="hljs-keyword">var</span> rex = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>($(<span class="hljs-string">'#searchBox'</span>).val(), <span class="hljs-string">"i"</span>);
+      <span class="hljs-keyword">if</span> (!rex.test(<span class="hljs-keyword">this</span>.name)){
+        <span class="hljs-keyword">this</span>.visible(<span class="hljs-string">'false'</span>);
+      }
+      <span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">this</span>.visible(<span class="hljs-string">'true'</span>);
+      }
+    };
+
+    <span class="hljs-keyword">var</span> markerBounce = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">this</span>.marker.setAnimation(google.maps.Animation.BOUNCE);
+
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> stopBounce= <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">elem</span>)</span>{
+      setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{elem.marker.setAnimation(<span class="hljs-literal">null</span>);  }, <span class="hljs-number">1400</span>);
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Function returns:</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">return</span>{
+      userInput: userInput,
+      makeViz: makeViz,
+      yelpAttrib: yelpAttrib,
+      yelpImgAttrib: yelpImgAttrib,
+      makeMarker: makeMarker,
+      initMap: initMap,
+      addMarkerListener:addMarkerListener,
+      map: map,
+      placeClicked: placeClicked,
+      markerInit: markerInit,
+      checkViz: checkViz,
+      updateModel: allPlaces()
+    };
+  };
+  ko.applyBindings(<span class="hljs-keyword">new</span> McDonoughEats());
+};</pre></div></div>
             
         </li>
         

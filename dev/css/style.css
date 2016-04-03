@@ -1,16 +1,90 @@
 
+
+
+
 body {
-  background-color: #1fb8b8;
+  background-color: #447799;
+}
+
+
+.main-container{
+  margin-top: 100px;
+}
+
+@media screen and (min-width: 500px) and (max-width: 750px){
+  .main-container{
+    margin-top: 50px;
+  }
+}
+
+@media screen and (min-width: 600px){
+  .main-container{
+    height: calc(100vh-600px+407px+500px);
+  }
+}
+
+
+.container{
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+
+.app-brand{
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+  /*  background: #262630;*/
+  color: white;
+
+}
+
+header.fixed {
+  width: 100vw;
+  background: #262630;
+  height: 50px;
+  color: #fcfddd;
+  font-size: 2em;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.searchBar{
+  line-height: 20px;
+  background: #262630;
+}
+#searchBox{
+  margin-top: 10px;
+  margin-left: 15px;
+  color: black;
 }
 
 .searchLabel{
-  font-weight: bold;
+  /*  font-weight: bold;
+  color: #fcfddd; */
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  color: white;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.yelpLogo{
+  margin-top: 26px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  height: 25px;
 }
 
 #introText{
   color: #d22110;
   font-weight: bold;
 }
+
+
 
 h4{
   text-align: center;
@@ -24,34 +98,54 @@ h4{
 
 .placeLi {
   list-style: none;
-  background-color: #e8ebe1;
-  color: #000;
+  background: #262630;
+  color: white;
   font-weight: bold;
+  margin-left: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: left;
 }
 
 #mapBox{
-  height: 407px;
+
+  height: calc(100vh - 100px - 100px);
+  margin-top: 65px;
+}
+@media screen and (max-height: 400px){
+  #mapBox{
+    height: calc(100vh - 50px - 50px);
+  }
+}
+@media screen and (max-width: 768px){
+  #mapBox{
+    height: calc(100vh - 50px - 100px);
+  }
+}
+
+#infoWinYelpImg{
+  width: 100px;
 }
 
 .infoWindowHeader {
-   font-size: 22px;
-   font-weight: 400;
-   padding: 10px;
-   background-color: #1fb8b8;
-   color: black;
-   margin: 1px;
-   border-radius: 2px 2px 0 0;
+  font-size: 22px;
+  font-weight: 400;
+  padding: 10px;
+  background-color: #1fb8b8;
+  color: black;
+  margin: 1px;
+  border-radius: 2px 2px 0 0;
 }
 
 #infoWindowContainer {
-   font-size: 16px;
-   font-weight: 400;
-   padding: 0;
-   background-color: #e8ebe1;
-   color: black;
-   margin: 0;
-   border-radius: 2px 2px 0 0;
-   overflow: scroll;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0;
+  background-color: #e8ebe1;
+  color: black;
+  margin: 0;
+  border-radius: 2px 2px 0 0;
+  overflow: scroll;
 }
 
 #imageRow {
@@ -70,7 +164,15 @@ h4{
   padding-left: 0;
   padding-right: 2px;
 }
-
+li{
+  float: left;
+  height: 30px;
+  padding: 8px 8px;
+  font-size: 14px;
+  line-height: 10px;
+  /*  background: #262630;*/
+  color: white;
+}
 
 
 #listBox{
@@ -78,24 +180,23 @@ h4{
 }
 
 .non-floating{
-
 }
-
+/*
 .listRow{
-  text-align: left;
-  height: 37px;
-  border-style: solid;
-  border-color: black;
-  border-width: 2px;
-  padding-left: 2px;
+text-align: left;
+height: 37px;
+border-style: solid;
+border-color: black;
+border-width: 2px;
+padding-left: 2px;
 }
 
 #list{
-  padding-left: 5px;
+padding-left: 5px;
 }
-
+*/
 .gm-style-iw {
-overflow: scroll;
+  overflow: scroll;
 }
 
 .gm-style {
