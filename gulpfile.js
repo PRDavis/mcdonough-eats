@@ -88,11 +88,20 @@ gulp.task('html', function() {
 // build css
 
 gulp.task('css', function() {
+  console.log('inside css task  - devBuild: ', devBuild);
+  if(!devBuild){
   return gulp.src(css.in)
   .pipe(size({title: 'CSS in'}))
   .pipe(cssnano())
   .pipe(size({title: 'CSS out'}))
   .pipe(gulp.dest(css.out));
+}
+  else{
+      return gulp.src(css.in)
+      .pipe(size({title: 'CSS in'}))
+      .pipe(size({title: 'CSS out'}))
+      .pipe(gulp.dest(css.out));
+  }
 });
 
 gulp.task('btstrapcss', function(){

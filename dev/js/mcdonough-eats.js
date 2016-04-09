@@ -44,16 +44,17 @@ var mapReady = function(){
       this.contentString = '<div id="infoWindowContainer">'+
       '<h2 class="infoWindowHeader">'+this.name+'</h2>'+
       '<div class ="row" id="imageRow">'+
-      '<div class = "col-md-2 col-sm-2 col-xs-2" id = "restPic">'+
+      '<div class = "col-md-2 col-sm-2 col-xs-5" id = "restPic">'+
       '<img src='+this.image_url+'>'+
       '</div>'+
-      '<div class = "col-md-2 col-sm-2 col-xs-2" id = "snippetPic">'+
+      '<div class = "col-md-2 col-sm-2 col-xs-5" id = "snippetPic">'+
       '<img class= "snippetPic" src='+this.snippet_image_url+'>'+
       '</div>'+
       '<div class =  "col-lg-8 hidden-md hidden-sm hidden-xs">'+
       '<p id="introText"> Click the telephone number to call this restaurant, or click the link below for more information:</p>'+
-      '<p class = "snippetText">'+this.snippet_text+'</p>'+
+        '<p class = "snippetText">'+this.snippet_text+'</p>'+
       '</div>'+
+
       '</div>'+
       '<div class = "row" id ="addressRow">'+
       '<div class="col-lg-12 hidden-md hidden-sm hidden-xs">'+
@@ -62,7 +63,7 @@ var mapReady = function(){
       '</div>'+
       '<div class = "row" id = "phoneRow">'+
       '<div class="col-md-12 col-sm-12 col-xs-12">'+
-      '<p id="phoneP"><b> Phone: '+'<a href=tel:'+ this.tel+'>'+ '('+this.tel.slice(0,3)+') '+this.tel.slice(3,6)+'-'+this.tel.slice(6,10)+'</a></b></p>'+
+      '<span id="phoneP"><b> Phone: '+'<a href=tel:'+ this.tel+'>'+ '('+this.tel.slice(0,3)+') '+this.tel.slice(3,6)+'-'+this.tel.slice(6,10)+'</a></b></span>'+
       '</div>'+
       '</div>'+
       '<img src='+this.rating_img_url+'>'+

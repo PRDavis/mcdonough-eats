@@ -3,7 +3,7 @@
 
 
 body {
-  background-color: #447799;
+  background-color: #479;
 }
 
 
@@ -11,11 +11,22 @@ body {
   margin-top: 100px;
 }
 
-@media screen and (min-width: 500px) and (max-width: 750px){
+@media screen and (max-width: 767px){
+
   .main-container{
-    margin-top: 50px;
+    margin-top: 35px;
   }
 }
+
+
+@media screen and (min-width: 500px) and (max-width: 750px){
+  .main-container{
+    height: 400px;
+    margin-top: 25px;
+  }
+}
+
+
 
 @media screen and (min-width: 600px){
   .main-container{
@@ -37,7 +48,15 @@ body {
   line-height: 20px;
   /*  background: #262630;*/
   color: white;
+}
 
+@media screen and (max-width: 767px){
+  .app-brand{
+    height: 25px;
+    padding: 10px 10px;
+    line-height: 14px;
+    color: white;
+  }
 }
 
 header.fixed {
@@ -60,24 +79,58 @@ header.fixed {
   margin-left: 15px;
   color: black;
 }
+@media screen and (max-width: 767px){
+  #searchBox{
+    width: 115px;
+    margin-top: 0px;
+    margin-left: 0px;
+    color: black;
+  }
+}
+.app-header{
+  float: none;
+}
 
 .searchLabel{
   /*  font-weight: bold;
   color: #fcfddd; */
   float: left;
   height: 50px;
-  padding: 15px 15px;
+  padding: 2px 42px;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 20px;
+}
+@media screen and (max-width: 767px){
+  .searchLabel{
+    /*  font-weight: bold;
+    color: #fcfddd; */
+    padding: 0px 10px;
+    margin-top: 2px;
+    float: left;
+    height: 12px;
+    color: white;
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 
 .yelpLogo{
-  margin-top: 26px;
+  margin-top: 10px;
   margin-bottom: 5px;
   margin-left: 0px;
   height: 25px;
 }
+
+@media screen and (max-width: 767px){
+  .yelpLogo{
+    /*margin-top: -6px;*/
+    margin-bottom: 5px;
+    /*margin-left: 168px;*/
+    height: 25px;
+  }
+}
+
 
 #introText{
   color: #d22110;
@@ -107,6 +160,14 @@ h4{
   float: left;
 }
 
+
+@media screen and (max-width: 767px){
+  .placeLi {
+    font-weight: normal;
+  }
+}
+
+
 #mapBox{
 
   height: calc(100vh - 100px - 100px);
@@ -119,7 +180,7 @@ h4{
 }
 @media screen and (max-width: 768px){
   #mapBox{
-    height: calc(100vh - 50px - 100px);
+    height: calc(100vh - 50px - 60px);
   }
 }
 
@@ -131,13 +192,25 @@ h4{
   font-size: 22px;
   font-weight: 400;
   padding: 10px;
-  background-color: #1fb8b8;
+  background-color: #479;
   color: black;
   margin: 1px;
   border-radius: 2px 2px 0 0;
 }
+@media screen and (max-width: 767px){
+  .infoWindowHeader {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px;
+    background-color: #479;
+    color: black;
+    margin: 1px;
+    border-radius: 2px 2px 0 0;
+  }
+}
 
 #infoWindowContainer {
+  flex-wrap: wrap;
   font-size: 16px;
   font-weight: 400;
   padding: 0;
@@ -164,6 +237,28 @@ h4{
   padding-left: 0;
   padding-right: 2px;
 }
+@media screen and (max-width: 767px){
+
+
+  #restPic {
+    width: 50%;
+    margin-top: 3px;
+
+  }
+
+  #snippetPic {
+      width: 50%;
+      margin-top: 3px;
+
+  }
+}*/
+
+
+
+
+
+
+
 li{
   float: left;
   height: 30px;
@@ -179,20 +274,33 @@ li{
   background-color: #d22110;
 }
 
-.non-floating{
-}
-/*
-.listRow{
-text-align: left;
-height: 37px;
-border-style: solid;
-border-color: black;
-border-width: 2px;
-padding-left: 2px;
+@media screen and (max-width: 767px){
+  .navbar-toggle{
+    margin-top: -9px;
+  }
 }
 
-#list{
-padding-left: 5px;
+
+  @media screen and (max-width: 767px){
+    .navButtonRight{
+      margin-top: 5px;
+    }
+
+    .non-floating{
+    }
+  }
+    /*
+    .listRow{
+    text-align: left;
+    height: 37px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    padding-left: 2px;
+  }
+
+  #list{
+  padding-left: 5px;
 }
 */
 .gm-style-iw {
@@ -201,4 +309,25 @@ padding-left: 5px;
 
 .gm-style {
   overflow: hidden;
+}
+@media screen and (orientation: landscape) and (max-width: 767px){
+  .app-brand{
+    width: 200 px;
+    height: 25px;
+    padding: 10px 10px;
+    line-height: 14px;
+    color: white;
+  }
+  #imageRow,#restPic, #snippetPic{
+    display: none;
+  }
+  #phoneRow{
+    line-height: normal;
+  }
+  #phoneP{
+    font-size: 12px;
+  }
+  .infoWindowHeader{
+    padding: 2px;
+  }
 }
