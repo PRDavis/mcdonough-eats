@@ -1,23 +1,16 @@
-
-
-
-
 body {
   background-color: #479;
 }
-
 
 .main-container{
   margin-top: 100px;
 }
 
 @media screen and (max-width: 767px){
-
   .main-container{
     margin-top: 35px;
   }
 }
-
 
 @media screen and (min-width: 500px) and (max-width: 750px){
   .main-container{
@@ -26,14 +19,11 @@ body {
   }
 }
 
-
-
 @media screen and (min-width: 600px){
   .main-container{
     height: calc(100vh-600px+407px+500px);
   }
 }
-
 
 .container{
   flex-wrap: wrap;
@@ -46,7 +36,6 @@ body {
   padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
-  /*  background: #262630;*/
   color: white;
 }
 
@@ -74,11 +63,13 @@ header.fixed {
   line-height: 20px;
   background: #262630;
 }
+
 #searchBox{
   margin-top: 10px;
   margin-left: 15px;
   color: black;
 }
+
 @media screen and (max-width: 767px){
   #searchBox{
     width: 115px;
@@ -87,13 +78,12 @@ header.fixed {
     color: black;
   }
 }
+
 .app-header{
   float: none;
 }
 
 .searchLabel{
-  /*  font-weight: bold;
-  color: #fcfddd; */
   float: left;
   height: 50px;
   padding: 2px 42px;
@@ -101,10 +91,9 @@ header.fixed {
   font-size: 16px;
   line-height: 20px;
 }
+
 @media screen and (max-width: 767px){
   .searchLabel{
-    /*  font-weight: bold;
-    color: #fcfddd; */
     padding: 0px 10px;
     margin-top: 2px;
     float: left;
@@ -124,20 +113,15 @@ header.fixed {
 
 @media screen and (max-width: 767px){
   .yelpLogo{
-    /*margin-top: -6px;*/
     margin-bottom: 5px;
-    /*margin-left: 168px;*/
     height: 25px;
   }
 }
-
 
 #introText{
   color: #d22110;
   font-weight: bold;
 }
-
-
 
 h4{
   text-align: center;
@@ -160,24 +144,23 @@ h4{
   float: left;
 }
 
-
 @media screen and (max-width: 767px){
   .placeLi {
     font-weight: normal;
   }
 }
 
-
 #mapBox{
-
   height: calc(100vh - 100px - 100px);
   margin-top: 65px;
 }
+
 @media screen and (max-height: 400px){
   #mapBox{
     height: calc(100vh - 50px - 50px);
   }
 }
+
 @media screen and (max-width: 768px){
   #mapBox{
     height: calc(100vh - 50px - 60px);
@@ -197,6 +180,7 @@ h4{
   margin: 1px;
   border-radius: 2px 2px 0 0;
 }
+
 @media screen and (max-width: 767px){
   .infoWindowHeader {
     font-size: 16px;
@@ -238,26 +222,16 @@ h4{
   padding-right: 2px;
 }
 @media screen and (max-width: 767px){
-
-
   #restPic {
     width: 50%;
     margin-top: 3px;
-
   }
 
   #snippetPic {
-      width: 50%;
-      margin-top: 3px;
-
+    width: 50%;
+    margin-top: 3px;
   }
-}*/
-
-
-
-
-
-
+}
 
 li{
   float: left;
@@ -265,10 +239,8 @@ li{
   padding: 8px 8px;
   font-size: 14px;
   line-height: 10px;
-  /*  background: #262630;*/
   color: white;
 }
-
 
 #listBox{
   background-color: #d22110;
@@ -280,29 +252,14 @@ li{
   }
 }
 
-
-  @media screen and (max-width: 767px){
-    .navButtonRight{
-      margin-top: 5px;
-    }
-
-    .non-floating{
-    }
+@media screen and (max-width: 767px){
+  .navButtonRight{
+    margin-top: 5px;
   }
-    /*
-    .listRow{
-    text-align: left;
-    height: 37px;
-    border-style: solid;
-    border-color: black;
-    border-width: 2px;
-    padding-left: 2px;
+  .non-floating{
   }
-
-  #list{
-  padding-left: 5px;
 }
-*/
+
 .gm-style-iw {
   overflow: scroll;
 }
@@ -310,6 +267,7 @@ li{
 .gm-style {
   overflow: hidden;
 }
+
 @media screen and (orientation: landscape) and (max-width: 767px){
   .app-brand{
     width: 200 px;
