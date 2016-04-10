@@ -1,15 +1,15 @@
+
+//Display an alert if the Google Maps API load has an error.
 var mapAPILoadFailed = function(){
   alert("Sorry, something went wrong when trying to reach google.com, please try again.");
 };
-
 
 //This function is called after the google maps script returns.
 var mapReady = function(){
 
   // The McDonoughEats function acts as the ViewModel for this application.
   //  It also holds the model but maintains seperation of concerns using the MVVM design pattern.
-
-
+  
   var McDonoughEats = function (){
 
     // The array allPlaces is the observableArray that holds all of the place objects.
@@ -120,7 +120,7 @@ var mapReady = function(){
         mapTypeId: google.maps.MapTypeId.TERRAIN
       });
     }());
-
+    // Change the map boundries any time the window size changes.
     window.onresize = function() {
       map.fitBounds(bound);
     };
@@ -239,6 +239,8 @@ var mapReady = function(){
 
       // Once authenticated, make the ajax requests for the entries in the data model.
       // An ajax failure returns an alert advising the user to retry.
+      // Set an 8 second timer for ajax requests to complete.
+      //If the timer expires, display an alert message to the user.
 
       var yelpTimer = setTimeout(function(){
         alert("Sorry, something went wrong when trying to reach Yelp.com, please try again.");
@@ -250,7 +252,7 @@ var mapReady = function(){
         data: parameterMap,
         cache: true,
         dataType: 'jsonp',
-        timeout: 5000
+        timeout: 8000
       });
 
       yelpRequest.fail(function(xhr, statusText){
@@ -265,6 +267,9 @@ var mapReady = function(){
             yelpInfo();
           }
         }
+
+        // If the ajax request is complete, clear the timer.
+
         clearTimeout(yelpTimer);
       });
 
