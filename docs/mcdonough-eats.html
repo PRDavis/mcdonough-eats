@@ -39,11 +39,13 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>This function is called after the google maps script returns.</p>
+              <p>Display an alert if the Google Maps API load has an error.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> mapReady = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> mapAPILoadFailed = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  alert(<span class="hljs-string">"Sorry, something went wrong when trying to reach google.com, please try again."</span>);
+};</pre></div></div>
             
         </li>
         
@@ -54,14 +56,11 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>The McDonoughEats function acts as the ViewModel for this application.
- It also holds the model but maintains seperation of concerns using the MVVM design pattern.</p>
+              <p>This function is called after the google maps script returns.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-
-  <span class="hljs-keyword">var</span> McDonoughEats = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> mapReady = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</pre></div></div>
             
         </li>
         
@@ -72,11 +71,13 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>The array allPlaces is the observableArray that holds all of the place objects.</p>
+              <p>The McDonoughEats function acts as the ViewModel for this application.
+ It also holds the model but maintains seperation of concerns using the MVVM design pattern.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    allPlaces=ko.observableArray();</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+  <span class="hljs-keyword">var</span> McDonoughEats = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{</pre></div></div>
             
         </li>
         
@@ -87,13 +88,28 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
+              <p>The array allPlaces is the observableArray that holds all of the place objects.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    allPlaces=ko.observableArray();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
               <p>This is the place constructor.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Place</span>(<span class="hljs-params">tel,data</span>)</span>{
       <span class="hljs-keyword">this</span>.tel=tel;
-      <span class="hljs-keyword">this</span>.visible= ko.observable(<span class="hljs-string">'true'</span>);
+      <span class="hljs-keyword">this</span>.visible= ko.observable(<span class="hljs-literal">true</span>);
       <span class="hljs-keyword">this</span>.name= data.businesses[<span class="hljs-number">0</span>].name;
       <span class="hljs-keyword">this</span>.review_count= data.businesses[<span class="hljs-number">0</span>].review_count;
       <span class="hljs-keyword">this</span>.postal_code=data.businesses[<span class="hljs-number">0</span>].location.postal_code;
@@ -108,7 +124,7 @@
       <span class="hljs-keyword">this</span>.url=data.businesses[<span class="hljs-number">0</span>].url;
       <span class="hljs-keyword">this</span>.latitude=data.businesses[<span class="hljs-number">0</span>].location.coordinate.latitude;
       <span class="hljs-keyword">this</span>.makeViz = makeViz;
-      <span class="hljs-keyword">this</span>.currentlySelected = ko.observable(<span class="hljs-string">'false'</span>);
+      <span class="hljs-keyword">this</span>.currentlySelected = ko.observable(<span class="hljs-literal">false</span>);
       <span class="hljs-keyword">this</span>.marker={};
       <span class="hljs-keyword">this</span>.markerBounce=markerBounce;
       <span class="hljs-keyword">this</span>.stopBounce = stopBounce;
@@ -131,7 +147,7 @@
       <span class="hljs-string">'&lt;/div&gt;'</span>+
       <span class="hljs-string">'&lt;div class =  "col-lg-8 hidden-md hidden-sm hidden-xs"&gt;'</span>+
       <span class="hljs-string">'&lt;p id="introText"&gt; Click the telephone number to call this restaurant, or click the link below for more information:&lt;/p&gt;'</span>+
-        <span class="hljs-string">'&lt;p class = "snippetText"&gt;'</span>+<span class="hljs-keyword">this</span>.snippet_text+<span class="hljs-string">'&lt;/p&gt;'</span>+
+      <span class="hljs-string">'&lt;p class = "snippetText"&gt;'</span>+<span class="hljs-keyword">this</span>.snippet_text+<span class="hljs-string">'&lt;/p&gt;'</span>+
       <span class="hljs-string">'&lt;/div&gt;'</span>+
 
       <span class="hljs-string">'&lt;/div&gt;'</span>+
@@ -159,11 +175,11 @@
         </li>
         
         
-        <li id="section-6">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p> The initialPlaces array holds local restaurant phone numbers.
  It acts as the initial data model.</p>
@@ -185,35 +201,35 @@
         </li>
         
         
-        <li id="section-7">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Model variables:</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> map;
-    <span class="hljs-keyword">var</span> yelpAttrib= ko.observable(<span class="hljs-string">'http://www.yelp.com'</span>) ;
-    <span class="hljs-keyword">var</span> yelpImgAttrib= ko.observable(<span class="hljs-string">'https://s3-media2.fl.yelpcdn.com/assets/srv0/developer_pages/9bfe343c35cc/assets/img/yelp_powered_btn_light@2x.png'</span>);
-    <span class="hljs-keyword">var</span> userInput = ko.observable(<span class="hljs-string">""</span>);
-    <span class="hljs-keyword">var</span> lenInitialPlaces = initialPlaces.length;
-    <span class="hljs-keyword">var</span> bound = <span class="hljs-keyword">new</span> google.maps.LatLngBounds();
-    <span class="hljs-keyword">var</span> selectedRestaurant = ko.observable(<span class="hljs-string">""</span>);
-    <span class="hljs-keyword">var</span> infowindow = <span class="hljs-keyword">new</span> google.maps.InfoWindow({
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> map,
+    yelpAttrib= ko.observable(<span class="hljs-string">'http://www.yelp.com'</span>),
+    yelpImgAttrib= ko.observable(<span class="hljs-string">'https://s3-media2.fl.yelpcdn.com/assets/srv0/developer_pages/9bfe343c35cc/assets/img/yelp_powered_btn_light@2x.png'</span>),
+    userInput = ko.observable(<span class="hljs-string">""</span>),
+    lenInitialPlaces = initialPlaces.length,
+    bound = <span class="hljs-keyword">new</span> google.maps.LatLngBounds(),
+    selectedRestaurant = ko.observable(<span class="hljs-string">""</span>),
+    infowindow = <span class="hljs-keyword">new</span> google.maps.InfoWindow({
       content: <span class="hljs-string">''</span>
     });</pre></div></div>
             
         </li>
         
         
-        <li id="section-8">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>Initiate the google map.</p>
 
@@ -224,11 +240,11 @@
         </li>
         
         
-        <li id="section-9">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Put the map in the mapbox element and center it on the target city.</p>
 
@@ -245,11 +261,28 @@
         </li>
         
         
-        <li id="section-10">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Change the map boundries any time the window size changes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-built_in">window</span>.onresize = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      map.fitBounds(bound);
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Add marker click listener.</p>
 
@@ -265,11 +298,11 @@
         </li>
         
         
-        <li id="section-11">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>Instantiate markers.</p>
 
@@ -289,11 +322,11 @@
         </li>
         
         
-        <li id="section-12">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Populates the markerArray and makes map boundries from the current marker set.</p>
 
@@ -305,7 +338,7 @@
 
       <span class="hljs-keyword">var</span> populateMarkerArray=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> counter3 = <span class="hljs-number">0</span>; counter3&lt;allPlaces().length;counter3++){
-          <span class="hljs-keyword">if</span>(allPlaces()[counter3].visible() === <span class="hljs-string">'true'</span>){
+          <span class="hljs-keyword">if</span>(allPlaces()[counter3].visible() === <span class="hljs-literal">true</span>){
             markerArray.push(allPlaces()[counter3]);
           }
         }
@@ -320,11 +353,11 @@
         </li>
         
         
-        <li id="section-13">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Change the map zoom to the remaining locations.</p>
 
@@ -347,11 +380,11 @@
         </li>
         
         
-        <li id="section-14">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>Add a click listener for each marker.</p>
 
@@ -365,18 +398,18 @@
         </li>
         
         
-        <li id="section-15">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>Remove !visible markers from map.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> clearMarker = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.visible() === <span class="hljs-string">'false'</span> ){
+      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.visible() === <span class="hljs-literal">false</span> ){
         <span class="hljs-keyword">this</span>.marker.setMap(<span class="hljs-literal">null</span>);
       }
     };</pre></div></div>
@@ -384,18 +417,18 @@
         </li>
         
         
-        <li id="section-16">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Place visible markers on map.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> setMarker = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.visible() === <span class="hljs-string">'true'</span> ){
+      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.visible() === <span class="hljs-literal">true</span> ){
         <span class="hljs-keyword">this</span>.marker.setMap(map);
       }
     };</pre></div></div>
@@ -403,11 +436,11 @@
         </li>
         
         
-        <li id="section-17">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Function updateModel instantiates the place objects with the data returned from the ajax request to the yelp api and places them in the allPlaces array.</p>
 
@@ -419,11 +452,11 @@
         </li>
         
         
-        <li id="section-18">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Done? Make the markers.</p>
 
@@ -440,11 +473,11 @@
         </li>
         
         
-        <li id="section-19">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>The yelpInfo function uses the keys needed to utilize the OAuth authentication process for the Yelp API - the keys are in the data.js file.</p>
 
@@ -455,11 +488,11 @@
         </li>
         
         
-        <li id="section-20">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Configure the oauth parameters array.</p>
 
@@ -476,11 +509,11 @@
         </li>
         
         
-        <li id="section-21">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Configure the getter for oauth.</p>
 
@@ -495,11 +528,11 @@
         </li>
         
         
-        <li id="section-22">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Make the authentication call.</p>
 
@@ -513,39 +546,63 @@
         </li>
         
         
-        <li id="section-23">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Once authenticated, make the ajax requests for the entries in the data model.
-An ajax failure returns an alert advising the user to retry.</p>
+An ajax failure returns an alert advising the user to retry.
+Set an 8 second timer for ajax requests to complete.
+If the timer expires, display an alert message to the user.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="hljs-keyword">var</span> yelpTimer = setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        alert(<span class="hljs-string">"Sorry, something went wrong when trying to reach Yelp.com, please try again."</span>);
+      },<span class="hljs-number">8000</span>);
+
+
       <span class="hljs-keyword">var</span> yelpRequest = $.ajax({
         url: message.action,
         data: parameterMap,
         cache: <span class="hljs-literal">true</span>,
         dataType: <span class="hljs-string">'jsonp'</span>,
-        timeout: <span class="hljs-number">5000</span>
+        timeout: <span class="hljs-number">8000</span>
       });
 
-      yelpRequest.error(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr, statusText</span>)</span>{
+      yelpRequest.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr, statusText</span>)</span>{
         alert(<span class="hljs-string">"Sorry, something went wrong when trying to reach Yelp.com, please try again."</span>);
       });
 
-      yelpRequest.success(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{
+      yelpRequest.done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{
         <span class="hljs-keyword">if</span> ( i &lt; lenInitialPlaces){
           updateModel(parameters[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>],data);
           i++;
           <span class="hljs-keyword">if</span> (i&lt;lenInitialPlaces){
             yelpInfo();
           }
-        }
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>If the ajax request is complete, clear the timer.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        clearTimeout(yelpTimer);
       });
+
     };  <span class="hljs-comment">//End of yelpInfo.</span>
 
     yelpInfo();
@@ -562,11 +619,11 @@ An ajax failure returns an alert advising the user to retry.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>A list item was clicked. Pass the object name to markerClicked.</p>
 
@@ -579,11 +636,11 @@ An ajax failure returns an alert advising the user to retry.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Match the clicked item to the marker, then bounce the marker and show the infowindow.</p>
 
@@ -595,11 +652,11 @@ An ajax failure returns an alert advising the user to retry.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>This is the name of the restaurant for the clicked marker.</p>
 
@@ -610,11 +667,11 @@ An ajax failure returns an alert advising the user to retry.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Match the marker to the correct object</p>
 
@@ -626,11 +683,11 @@ An ajax failure returns an alert advising the user to retry.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Bounce the marker.</p>
 
@@ -641,11 +698,11 @@ An ajax failure returns an alert advising the user to retry.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Stop the marker bounce.</p>
 
@@ -656,11 +713,11 @@ An ajax failure returns an alert advising the user to retry.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Populate and display the infowindow.</p>
 
@@ -672,11 +729,11 @@ An ajax failure returns an alert advising the user to retry.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Set the map boundaries on infowindow close.</p>
 
@@ -703,11 +760,11 @@ An ajax failure returns an alert advising the user to retry.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>Sets the visible property based on searchbox state.</p>
 
@@ -718,28 +775,28 @@ An ajax failure returns an alert advising the user to retry.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p>If the searchbox is empty, mark all items visible.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (userInput() === <span class="hljs-string">''</span>){
-        <span class="hljs-keyword">this</span>.visible(<span class="hljs-string">'true'</span>);
+        <span class="hljs-keyword">this</span>.visible(<span class="hljs-literal">true</span>);
       }</pre></div></div>
             
         </li>
         
         
-        <li id="section-34">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>If something is in the search box, compare it to the names of the places.
 If there is not a match, mark visible as false,
@@ -749,12 +806,12 @@ else mark true.</p>
             
             <div class="content"><div class='highlight'><pre>
 
-      <span class="hljs-keyword">var</span> rex = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>($(<span class="hljs-string">'#searchBox'</span>).val(), <span class="hljs-string">"i"</span>);
+      <span class="hljs-keyword">var</span> rex = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(userInput(), <span class="hljs-string">"i"</span>);
       <span class="hljs-keyword">if</span> (!rex.test(<span class="hljs-keyword">this</span>.name)){
-        <span class="hljs-keyword">this</span>.visible(<span class="hljs-string">'false'</span>);
+        <span class="hljs-keyword">this</span>.visible(<span class="hljs-literal">false</span>);
       }
       <span class="hljs-keyword">else</span>{
-        <span class="hljs-keyword">this</span>.visible(<span class="hljs-string">'true'</span>);
+        <span class="hljs-keyword">this</span>.visible(<span class="hljs-literal">true</span>);
       }
     };
 
@@ -766,11 +823,11 @@ else mark true.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               
             </div>
@@ -782,11 +839,11 @@ else mark true.</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>Function returns:</p>
 

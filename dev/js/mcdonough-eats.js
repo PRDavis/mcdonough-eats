@@ -9,7 +9,7 @@ var mapReady = function(){
 
   // The McDonoughEats function acts as the ViewModel for this application.
   //  It also holds the model but maintains seperation of concerns using the MVVM design pattern.
-  
+
   var McDonoughEats = function (){
 
     // The array allPlaces is the observableArray that holds all of the place objects.
@@ -273,7 +273,6 @@ var mapReady = function(){
         clearTimeout(yelpTimer);
       });
 
-      // clear timeout
     };  //End of yelpInfo.
 
     yelpInfo();
