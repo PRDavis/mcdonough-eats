@@ -7,7 +7,9 @@ General information:
 McDonough Eats is an application that produces a neighborhood Map of
 Restaurants in my home town of McDonough, GA.
 
-The application begins with a data model of phone numbers and names of a few
+To run the application, open the index.html file in your browser.
+
+The application begins with a data model of phone numbers for a few
 restaurants. Using OAuth, it authenticates against the Yelp.com API. Then using
 ajax it queries Yelp, and for each restaurant receives a JSON reply that
 includes location coordinates, URLs, review snippets, images, customer ratings,

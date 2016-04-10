@@ -19,7 +19,7 @@
           <!-- put yelp logo link in list per api rules -->
           <div class='col-xs-6 col-md-1'>
             <a data-bind="attr: { href: yelpAttrib}">
-              <img class="yelpLogo" data-bind= "attr: { src: yelpImgAttrib}"/>
+              <img class="yelpLogo" data-bind="attr: { src: yelpImgAttrib}"/>
             </a>
           </div>
           <div class='searchLabel col-xs-9 col-md-7'>
@@ -39,9 +39,9 @@
       <div class='row'>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav" id='list' data-bind = "foreach: allPlaces">
-          <!--[htmlclean-protect]--> <!-- ko if: visible() === 'true' -->
-          <li class='placeLi listRow navbar-toggle collapsed' data-toggle="collapse" data-target="#navbar"data-bind = "text : name, click: $root.placeClicked"></li>
+        <ul class="nav navbar-nav" id='list' data-bind="foreach: allPlaces">
+          <!--[htmlclean-protect]--> <!-- ko if: visible() === true -->
+          <li class='placeLi listRow navbar-toggle collapsed' data-toggle="collapse" data-target="#navbar" data-bind="text : name, click: $root.placeClicked"></li>
           <!-- /ko --> <!--[/htmlclean-protect]-->
         </ul>
       </div>
@@ -49,13 +49,13 @@
   </nav>
 
 
-  <div class="container main-container">
+  <main class="container main-container">
     <!-- make the box for the map and put a failure message in case of a retreival failure -->
 
     <div class="col-xs-12" id="mapBox">
       The map should go here, but I couldn't get it. Please reload to try again.
     </div>
-  </div>
+  </main>
   <!--                                          -->
   <!-- point to external <scripts>              -->
   <!--                                          -->
@@ -71,6 +71,6 @@
   <script src="js/lib/knockout-3.4.0.js"></script>
   <script src="js/lib/data.js"></script>
   <script src="js/mcdonough-eats.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKeufMxxHn97jgPnscgx38LBN0mRNSf3o&callback=mapReady" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKeufMxxHn97jgPnscgx38LBN0mRNSf3o&callback=mapReady" onerror="mapAPILoadFailed()" async defer></script>
 </body>
 </html>

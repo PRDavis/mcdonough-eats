@@ -1,3 +1,7 @@
+var mapAPILoadFailed = function(){
+  alert("Sorry, something went wrong when trying to reach google.com, please try again.");
+};
+
 
 //This function is called after the google maps script returns.
 var mapReady = function(){
@@ -14,7 +18,7 @@ var mapReady = function(){
     // This is the place constructor.
     function Place(tel,data){
       this.tel=tel;
-      this.visible= ko.observable('true');
+      this.visible= ko.observable(true);
       this.name= data.businesses[0].name;
       this.review_count= data.businesses[0].review_count;
       this.postal_code=data.businesses[0].location.postal_code;
@@ -29,7 +33,7 @@ var mapReady = function(){
       this.url=data.businesses[0].url;
       this.latitude=data.businesses[0].location.coordinate.latitude;
       this.makeViz = makeViz;
-      this.currentlySelected = ko.observable('false');
+      this.currentlySelected = ko.observable(false);
       this.marker={};
       this.markerBounce=markerBounce;
       this.stopBounce = stopBounce;
@@ -52,7 +56,7 @@ var mapReady = function(){
       '</div>'+
       '<div class =  "col-lg-8 hidden-md hidden-sm hidden-xs">'+
       '<p id="introText"> Click the telephone number to call this restaurant, or click the link below for more information:</p>'+
-        '<p class = "snippetText">'+this.snippet_text+'</p>'+
+      '<p class = "snippetText">'+this.snippet_text+'</p>'+
       '</div>'+
 
       '</div>'+
@@ -94,14 +98,14 @@ var mapReady = function(){
 
 
     // Model variables:
-    var map;
-    var yelpAttrib= ko.observable('http://www.yelp.com') ;
-    var yelpImgAttrib= ko.observable('https://s3-media2.fl.yelpcdn.com/assets/srv0/developer_pages/9bfe343c35cc/assets/img/yelp_powered_btn_light@2x.png');
-    var userInput = ko.observable("");
-    var lenInitialPlaces = initialPlaces.length;
-    var bound = new google.maps.LatLngBounds();
-    var selectedRestaurant = ko.observable("");
-    var infowindow = new google.maps.InfoWindow({
+    var map,
+    yelpAttrib= ko.observable('http://www.yelp.com'),
+    yelpImgAttrib= ko.observable('https://s3-media2.fl.yelpcdn.com/assets/srv0/developer_pages/9bfe343c35cc/assets/img/yelp_powered_btn_light@2x.png'),
+    userInput = ko.observable(""),
+    lenInitialPlaces = initialPlaces.length,
+    bound = new google.maps.LatLngBounds(),
+    selectedRestaurant = ko.observable(""),
+    infowindow = new google.maps.InfoWindow({
       content: ''
     });
 
@@ -117,7 +121,9 @@ var mapReady = function(){
       });
     }());
 
-
+    window.onresize = function() {
+      map.fitBounds(bound);
+    };
     //Add marker click listener.
 
     var addMarkerListener = function(data){
@@ -144,7 +150,7 @@ var mapReady = function(){
 
       var populateMarkerArray=function(){
         for (var counter3 = 0; counter3<allPlaces().length;counter3++){
-          if(allPlaces()[counter3].visible() === 'true'){
+          if(allPlaces()[counter3].visible() === true){
             markerArray.push(allPlaces()[counter3]);
           }
         }
@@ -178,16 +184,20 @@ var mapReady = function(){
 
     // Remove !visible markers from map.
     var clearMarker = function(){
-      if(this.visible() === 'false' ){
+      if(this.visible() === false ){
         this.marker.setMap(null);
       }
     };
     // Place visible markers on map.
     var setMarker = function(){
-      if(this.visible() === 'true' ){
+      if(this.visible() === true ){
         this.marker.setMap(map);
       }
     };
+
+
+
+
 
 
     // Function updateModel instantiates the place objects with the data returned from the ajax request to the yelp api and places them in the allPlaces array.
@@ -230,6 +240,11 @@ var mapReady = function(){
       // Once authenticated, make the ajax requests for the entries in the data model.
       // An ajax failure returns an alert advising the user to retry.
 
+      var yelpTimer = setTimeout(function(){
+        alert("Sorry, something went wrong when trying to reach Yelp.com, please try again.");
+      },8000);
+
+
       var yelpRequest = $.ajax({
         url: message.action,
         data: parameterMap,
@@ -238,11 +253,11 @@ var mapReady = function(){
         timeout: 5000
       });
 
-      yelpRequest.error(function(xhr, statusText){
+      yelpRequest.fail(function(xhr, statusText){
         alert("Sorry, something went wrong when trying to reach Yelp.com, please try again.");
       });
 
-      yelpRequest.success(function(data){
+      yelpRequest.done(function(data){
         if ( i < lenInitialPlaces){
           updateModel(parameters[0][1],data);
           i++;
@@ -250,7 +265,10 @@ var mapReady = function(){
             yelpInfo();
           }
         }
+        clearTimeout(yelpTimer);
       });
+
+      // clear timeout
     };  //End of yelpInfo.
 
     yelpInfo();
@@ -308,7 +326,7 @@ var mapReady = function(){
     var makeViz = function(){
       // If the searchbox is empty, mark all items visible.
       if (userInput() === ''){
-        this.visible('true');
+        this.visible(true);
       }
 
 
@@ -317,12 +335,12 @@ var mapReady = function(){
       //else mark true.
 
 
-      var rex = new RegExp($('#searchBox').val(), "i");
+      var rex = new RegExp(userInput(), "i");
       if (!rex.test(this.name)){
-        this.visible('false');
+        this.visible(false);
       }
       else{
-        this.visible('true');
+        this.visible(true);
       }
     };
 
